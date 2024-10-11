@@ -1,6 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { OrgOrgOwnerBackfillResponse, OrgCreateParams, OrgUpdateParams, OrgEnableParams, Orgs } from './orgs';
+export {
+  OrgOrgOwnerBackfillResponse,
+  OrgValidateResponse,
+  OrgCreateParams,
+  OrgUpdateParams,
+  OrgEnableParams,
+  OrgValidateParams,
+  Orgs,
+} from './orgs';
 export { Teams } from './teams/index';
 export {
   UserRemoveResponse,

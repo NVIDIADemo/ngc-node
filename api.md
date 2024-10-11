@@ -4,6 +4,7 @@ Types:
 
 - <code><a href="./src/resources/shared.ts">Health</a></code>
 - <code><a href="./src/resources/shared.ts">MeteringResultList</a></code>
+- <code><a href="./src/resources/shared.ts">Team</a></code>
 - <code><a href="./src/resources/shared.ts">TeamList</a></code>
 - <code><a href="./src/resources/shared.ts">User</a></code>
 - <code><a href="./src/resources/shared.ts">UserInvitationList</a></code>
@@ -51,11 +52,10 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/orgs/teams/teams.ts">TeamResponse</a></code>
-- <code><a href="./src/resources/orgs/teams/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /v2/org/{org-name}/teams">client.orgs.teams.<a href="./src/resources/orgs/teams/teams.ts">list</a>(orgName, { ...params }) -> TeamListResponsesPageNumberTeams</code>
+- <code title="get /v2/org/{org-name}/teams">client.orgs.teams.<a href="./src/resources/orgs/teams/teams.ts">list</a>(orgName, { ...params }) -> TeamsPageNumberTeams</code>
 
 ### Users
 
@@ -125,19 +125,17 @@ Methods:
 
 - <code title="get /v2/org/{org-name}/auditLogs/{log-id}">client.orgs.auditLogs.<a href="./src/resources/orgs/audit-logs.ts">retrieve</a>(orgName, logId) -> AuditLogsPresignedURL</code>
 
-# Users
+# Me
 
-## V2
-
-### APIKey
+## APIKey
 
 Types:
 
-- <code><a href="./src/resources/users/v2/api-key.ts">UserKeyResponse</a></code>
+- <code><a href="./src/resources/me/api-key.ts">UserKeyResponse</a></code>
 
 Methods:
 
-- <code title="post /v2/users/me/api-key">client.users.v2.apiKey.<a href="./src/resources/users/v2/api-key.ts">create</a>() -> UserKeyResponse</code>
+- <code title="post /v2/users/me/api-key">client.me.apiKey.<a href="./src/resources/me/api-key.ts">create</a>() -> UserKeyResponse</code>
 
 # Admin
 
@@ -152,6 +150,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/orgs/orgs.ts">OrgOrgOwnerBackfillResponse</a></code>
+- <code><a href="./src/resources/admin/orgs/orgs.ts">OrgValidateResponse</a></code>
 
 Methods:
 
@@ -161,6 +160,7 @@ Methods:
 - <code title="post /v2/admin/backfill-orgs-to-kratos">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">backfillOrgsToKratos</a>() -> Response</code>
 - <code title="post /v2/admin/org/{org-name}/enablement">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">enable</a>(orgName, { ...params }) -> Response</code>
 - <code title="post /v2/admin/org/{org-name}/org-owner-backfill">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">orgOwnerBackfill</a>(orgName) -> OrgOrgOwnerBackfillResponse</code>
+- <code title="get /v3/orgs/proto-org/validate">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">validate</a>({ ...params }) -> OrgValidateResponse</code>
 
 ### Users
 
@@ -171,6 +171,7 @@ Types:
 Methods:
 
 - <code title="post /v2/admin/org/{org-name}/users">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">create</a>(orgName, { ...params }) -> User</code>
+- <code title="get /v3/orgs/{org-name}/users/{user-email-or-id}">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">retrieve</a>(orgName, userEmailOrId) -> User</code>
 - <code title="post /v2/admin/org/{org-name}/users/{id}">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">add</a>(orgName, id, { ...params }) -> User</code>
 - <code title="patch /v2/admin/org/{org-name}/users/{id}/add-role">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">addRole</a>(orgName, id, { ...params }) -> User</code>
 - <code title="get /v2/admin/org/{org-name}/entitlements">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">getEntitlements</a>(orgName, { ...params }) -> Response</code>
@@ -187,6 +188,7 @@ Methods:
 - <code title="patch /v2/admin/org/{org-name}/teams/{team-name}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">update</a>(orgName, teamName, { ...params }) -> Response</code>
 - <code title="post /v2/admin/org/{org-name}/team/{team-name}/users/{id}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">add</a>(orgName, teamName, id, { ...params }) -> User</code>
 - <code title="patch /v2/admin/org/{org-name}/team/{team-name}/users/{id}/add-role">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">addRole</a>(orgName, teamName, id, { ...params }) -> User</code>
+- <code title="get /v3/orgs/{org-name}/teams/{team-name}/users/{user-email-or-id}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">retrieveUser</a>(orgName, teamName, userEmailOrId) -> User</code>
 
 ## Users
 
@@ -217,28 +219,6 @@ Types:
 Methods:
 
 - <code title="get /version">client.services.<a href="./src/resources/services.ts">version</a>({ ...params }) -> ServiceVersionResponse</code>
-
-# V3OrgsUsers
-
-Methods:
-
-- <code title="get /v3/orgs/{org-name}/users/{user-email-or-id}">client.v3OrgsUsers.<a href="./src/resources/v3-orgs-users.ts">retrieve</a>(orgName, userEmailOrId) -> User</code>
-
-# V3OrgsTeamsUsers
-
-Methods:
-
-- <code title="get /v3/orgs/{org-name}/teams/{team-name}/users/{user-email-or-id}">client.v3OrgsTeamsUsers.<a href="./src/resources/v3-orgs-teams-users.ts">retrieve</a>(orgName, teamName, userEmailOrId) -> User</code>
-
-# V3Orgs
-
-Types:
-
-- <code><a href="./src/resources/v3-orgs.ts">OrgInvitation</a></code>
-
-Methods:
-
-- <code title="get /v3/orgs/proto-org/validate">client.v3Orgs.<a href="./src/resources/v3-orgs.ts">validate</a>({ ...params }) -> OrgInvitation</code>
 
 # Roles
 

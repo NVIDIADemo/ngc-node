@@ -1454,7 +1454,6 @@ export namespace Orgs {
   export import UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
   export import Teams = TeamsAPI.Teams;
   export import TeamResponse = TeamsAPI.TeamResponse;
-  export import TeamListResponse = TeamsAPI.TeamListResponse;
   export import TeamListParams = TeamsAPI.TeamListParams;
   export import ProtoOrg = ProtoOrgAPI.ProtoOrg;
   export import ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;

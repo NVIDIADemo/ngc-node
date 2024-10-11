@@ -59,6 +59,13 @@ export class Orgs extends APIResource {
   ): Core.APIPromise<OrgOrgOwnerBackfillResponse> {
     return this._client.post(`/v2/admin/org/${orgName}/org-owner-backfill`, options);
   }
+
+  /**
+   * Validate org creation from proto org
+   */
+  validate(query: OrgValidateParams, options?: Core.RequestOptions): Core.APIPromise<OrgValidateResponse> {
+    return this._client.get('/v3/orgs/proto-org/validate', { query, ...options });
+  }
 }
 
 export interface OrgOrgOwnerBackfillResponse {
@@ -66,6 +73,70 @@ export interface OrgOrgOwnerBackfillResponse {
 }
 
 export namespace OrgOrgOwnerBackfillResponse {
+  export interface RequestStatus {
+    requestId?: string;
+
+    serverId?: string;
+
+    /**
+     * Describes response status reported by the server.
+     */
+    statusCode?:
+      | 'UNKNOWN'
+      | 'SUCCESS'
+      | 'UNAUTHORIZED'
+      | 'PAYMENT_REQUIRED'
+      | 'FORBIDDEN'
+      | 'TIMEOUT'
+      | 'EXISTS'
+      | 'NOT_FOUND'
+      | 'INTERNAL_ERROR'
+      | 'INVALID_REQUEST'
+      | 'INVALID_REQUEST_VERSION'
+      | 'INVALID_REQUEST_DATA'
+      | 'METHOD_NOT_ALLOWED'
+      | 'CONFLICT'
+      | 'UNPROCESSABLE_ENTITY'
+      | 'TOO_MANY_REQUESTS'
+      | 'INSUFFICIENT_STORAGE'
+      | 'SERVICE_UNAVAILABLE'
+      | 'PAYLOAD_TOO_LARGE'
+      | 'NOT_ACCEPTABLE'
+      | 'UNAVAILABLE_FOR_LEGAL_REASONS'
+      | 'BAD_GATEWAY';
+
+    statusDescription?: string;
+  }
+}
+
+/**
+ * Invitation Validation Response.
+ */
+export interface OrgValidateResponse {
+  /**
+   * Org invitation to NGC
+   */
+  orgInvitation?: OrgValidateResponse.OrgInvitation;
+
+  requestStatus?: OrgValidateResponse.RequestStatus;
+}
+
+export namespace OrgValidateResponse {
+  /**
+   * Org invitation to NGC
+   */
+  export interface OrgInvitation {
+    /**
+     * Email address of the user.
+     */
+    email?: string;
+
+    /**
+     * Proto Org identifier.
+     */
+    protoOrgId?: string;
+  }
+
   export interface RequestStatus {
     requestId?: string;
 
@@ -627,11 +698,20 @@ export namespace OrgEnableParams {
   }
 }
 
+export interface OrgValidateParams {
+  /**
+   * JWT that contains org owner email and proto org identifier
+   */
+  invitation_token: string;
+}
+
 export namespace Orgs {
   export import OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
+  export import OrgValidateResponse = OrgsAPI.OrgValidateResponse;
   export import OrgCreateParams = OrgsAPI.OrgCreateParams;
   export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
   export import OrgEnableParams = OrgsAPI.OrgEnableParams;
+  export import OrgValidateParams = OrgsAPI.OrgValidateParams;
   export import Users = UsersAPI.Users;
   export import UserRemoveResponse = UsersAPI.UserRemoveResponse;
   export import UserCreateParams = UsersAPI.UserCreateParams;

@@ -3,7 +3,7 @@
 export * from './shared';
 export { Admin } from './admin/admin';
 export { Health } from './health/health';
-export { OrgInvitation, V3OrgValidateParams, V3Orgs } from './v3-orgs';
+export { Me } from './me/me';
 export {
   OrgList,
   OrgResponse,
@@ -18,7 +18,4 @@ export { PublicKeyRetrieveAllResponse, PublicKeys } from './public-keys';
 export { ServiceVersionResponse, ServiceVersionParams, Services } from './services';
 export { SwaggerResources } from './swagger-resources/swagger-resources';
 export { UserRoleDefinitions, RoleRetrieveAllParams, Roles } from './roles';
-export { Users } from './users/users';
 export { UsersManagement } from './users-management/users-management';
-export { V3OrgsTeamsUsers } from './v3-orgs-teams-users';
-export { V3OrgsUsers } from './v3-orgs-users';

@@ -25,6 +25,17 @@ export class Users extends APIResource {
   }
 
   /**
+   * Get info and role/invitation in an org by email or id
+   */
+  retrieve(
+    orgName: string,
+    userEmailOrId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User> {
+    return this._client.get(`/v3/orgs/${orgName}/users/${userEmailOrId}`, options);
+  }
+
+  /**
    * Add existing User to an Org
    */
   add(

@@ -16,9 +16,11 @@ export namespace Admin {
   export import EntitlementRetrieveAllParams = EntitlementsAPI.EntitlementRetrieveAllParams;
   export import Orgs = OrgsAPI.Orgs;
   export import OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
+  export import OrgValidateResponse = OrgsAPI.OrgValidateResponse;
   export import OrgCreateParams = OrgsAPI.OrgCreateParams;
   export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
   export import OrgEnableParams = OrgsAPI.OrgEnableParams;
+  export import OrgValidateParams = OrgsAPI.OrgValidateParams;
   export import Users = UsersAPI.Users;
   export import UserCRMSyncResponse = UsersAPI.UserCRMSyncResponse;
 }
