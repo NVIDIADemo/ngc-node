@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install ngc
+npm install git+ssh://git@github.com:NVIDIADemo/ngc-node.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://app.stainlessapi.com/docs/guides/publish), this will become: `npm install ngc`
 
 ## Usage
 
