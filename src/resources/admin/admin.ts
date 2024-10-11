@@ -13,7 +13,6 @@ export class Admin extends APIResource {
 
 export namespace Admin {
   export import Orgs = OrgsAPI.Orgs;
-  export import OrgListResponse = OrgsAPI.OrgListResponse;
   export import OrgCreateParams = OrgsAPI.OrgCreateParams;
   export import OrgListParams = OrgsAPI.OrgListParams;
   export import Users = UsersAPI.Users;

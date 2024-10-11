@@ -3,7 +3,7 @@
 import { APIResource } from '../../../../resource';
 import * as Core from '../../../../core';
 import * as MeteringAPI from './metering';
-import * as Shared from '../../../shared';
+import { type Response } from '../../../../_shims/index';
 
 export class Metering extends APIResource {
   /**
@@ -13,8 +13,12 @@ export class Metering extends APIResource {
     orgName: string,
     query: MeteringDownsampleParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.MeteringResultList> {
-    return this._client.get(`/v2/admin/org/${orgName}/registry/metering/downsample`, { query, ...options });
+  ): Core.APIPromise<Response> {
+    return this._client.get(`/v2/admin/org/${orgName}/registry/metering/downsample`, {
+      query,
+      ...options,
+      __binaryResponse: true,
+    });
   }
 }
 

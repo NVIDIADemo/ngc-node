@@ -3,17 +3,14 @@
 import { APIResource } from '../../../resource';
 import * as Core from '../../../core';
 import * as ValidateAPI from './validate';
-import * as OrgsAPI from '../../orgs/orgs';
+import { type Response } from '../../../_shims/index';
 
 export class Validate extends APIResource {
   /**
    * List all organizations that match the validate org params
    */
-  retrieveAll(
-    query: ValidateRetrieveAllParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OrgsAPI.OrgList> {
-    return this._client.get('/v2/admin/org/validate', { query, ...options });
+  retrieveAll(query: ValidateRetrieveAllParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get('/v2/admin/org/validate', { query, ...options, __binaryResponse: true });
   }
 }
 
