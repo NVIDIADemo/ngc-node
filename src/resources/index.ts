@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export * from './shared';
-export { Admin } from './admin/admin';
 export { Health } from './health/health';
 export { Org } from './org/org';
 export { OrgInvitation, V3OrgValidateParams, V3Orgs } from './v3-orgs';
