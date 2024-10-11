@@ -13,7 +13,6 @@ export {
   OrgListResponsesPageNumberOrganizations,
   Orgs,
 } from './orgs/orgs';
-export { Organizations } from './organizations/organizations';
 export { PublicKeyRetrieveAllResponse, PublicKeys } from './public-keys';
 export { ServiceVersionResponse, ServiceVersionParams, Services } from './services';
 export { SuperAdminOrgControllers } from './super-admin-org-controllers/super-admin-org-controllers';

@@ -139,46 +139,6 @@ Methods:
 
 - <code title="post /v2/users/me/api-key">client.users.v2.apiKey.<a href="./src/resources/users/v2/api-key.ts">create</a>() -> UserKeyResponse</code>
 
-# Organizations
-
-## Teams
-
-Types:
-
-- <code><a href="./src/resources/organizations/teams/teams.ts">TeamCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /v2/org/{org-name}/teams">client.organizations.teams.<a href="./src/resources/organizations/teams/teams.ts">create</a>(orgName, { ...params }) -> TeamCreateResponse</code>
-
-### Users
-
-Types:
-
-- <code><a href="./src/resources/organizations/teams/users.ts">UserListResponse</a></code>
-- <code><a href="./src/resources/organizations/teams/users.ts">UserDeleteResponse</a></code>
-
-Methods:
-
-- <code title="post /v2/org/{org-name}/team/{team-name}/users">client.organizations.teams.users.<a href="./src/resources/organizations/teams/users.ts">create</a>(orgName, teamName, { ...params }) -> User</code>
-- <code title="get /v2/org/{org-name}/team/{team-name}/users/{id}">client.organizations.teams.users.<a href="./src/resources/organizations/teams/users.ts">retrieve</a>(orgName, teamName, id, { ...params }) -> User</code>
-- <code title="get /v2/org/{org-name}/team/{team-name}/users">client.organizations.teams.users.<a href="./src/resources/organizations/teams/users.ts">list</a>(orgName, teamName, { ...params }) -> UserListResponsesPageNumberUsers</code>
-- <code title="delete /v2/org/{org-name}/team/{team-name}/users/{id}">client.organizations.teams.users.<a href="./src/resources/organizations/teams/users.ts">delete</a>(orgName, teamName, id) -> UserDeleteResponse</code>
-
-## AuditLogs
-
-Types:
-
-- <code><a href="./src/resources/organizations/audit-logs.ts">AuditLogsResponse</a></code>
-- <code><a href="./src/resources/organizations/audit-logs.ts">AuditLogDeleteResponse</a></code>
-- <code><a href="./src/resources/organizations/audit-logs.ts">AuditLogRequestResponse</a></code>
-
-Methods:
-
-- <code title="delete /v2/org/{org-name}/auditLogs">client.organizations.auditLogs.<a href="./src/resources/organizations/audit-logs.ts">delete</a>(orgName, { ...params }) -> AuditLogDeleteResponse</code>
-- <code title="post /v2/org/{org-name}/auditLogs">client.organizations.auditLogs.<a href="./src/resources/organizations/audit-logs.ts">request</a>(orgName, { ...params }) -> AuditLogRequestResponse</code>
-- <code title="get /v2/org/{org-name}/auditLogs">client.organizations.auditLogs.<a href="./src/resources/organizations/audit-logs.ts">retrieveAll</a>(orgName) -> AuditLogsResponse</code>
-
 # SuperAdminUser
 
 Types:
