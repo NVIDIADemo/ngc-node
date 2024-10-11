@@ -135,7 +135,9 @@ Types:
 
 Methods:
 
-- <code title="post /v2/users/me/api-key">client.me.apiKey.<a href="./src/resources/me/api-key.ts">create</a>() -> UserKeyResponse</code>
+- <code title="get /v2/users/me">client.me.apiKey.<a href="./src/resources/me/api-key.ts">retrieve</a>({ ...params }) -> User</code>
+- <code title="patch /v2/users/me">client.me.apiKey.<a href="./src/resources/me/api-key.ts">update</a>({ ...params }) -> User</code>
+- <code title="post /v2/users/me/api-key">client.me.apiKey.<a href="./src/resources/me/api-key.ts">createAPIKey</a>() -> UserKeyResponse</code>
 
 # Admin
 
@@ -200,15 +202,6 @@ Methods:
 
 - <code title="post /v2/admin/users/{id}/crm-sync">client.admin.users.<a href="./src/resources/admin/users.ts">crmSync</a>(id) -> UserCRMSyncResponse</code>
 - <code title="post /v2/admin/users/{id}/migrate-deprecated-roles">client.admin.users.<a href="./src/resources/admin/users.ts">migrateDeprecatedRoles</a>(id) -> User</code>
-
-# UsersManagement
-
-## Me
-
-Methods:
-
-- <code title="get /v2/users/me">client.usersManagement.me.<a href="./src/resources/users-management/me.ts">retrieve</a>({ ...params }) -> User</code>
-- <code title="patch /v2/users/me">client.usersManagement.me.<a href="./src/resources/users-management/me.ts">update</a>({ ...params }) -> User</code>
 
 # Services
 
