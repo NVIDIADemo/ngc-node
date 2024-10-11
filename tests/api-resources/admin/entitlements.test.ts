@@ -7,19 +7,19 @@ const client = new Ngc({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource offboarded', () => {
-  test('list: request options instead of params are passed correctly', async () => {
+describe('resource entitlements', () => {
+  test('retrieveAll: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.orgs.offboarded.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.admin.entitlements.retrieveAll({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Ngc.NotFoundError,
     );
   });
 
-  test('list: request options and params are passed correctly', async () => {
+  test('retrieveAll: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.admin.orgs.offboarded.list(
-        { 'page-number': 0, 'page-size': 0 },
+      client.admin.entitlements.retrieveAll(
+        { 'is-paid-subscription': true, 'product-name': 'product-name' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Ngc.NotFoundError);

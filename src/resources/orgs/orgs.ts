@@ -25,8 +25,7 @@ export class Orgs extends APIResource {
   /**
    * Create a new organization based on the org info provided in the request.
    */
-  create(params: OrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<OrgResponse> {
-    const { ncid, VisitorID, ...body } = params;
+  create(body: OrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<OrgResponse> {
     return this._client.post('/v3/orgs', { body, ...options });
   }
 
@@ -1221,100 +1220,84 @@ export namespace OrgListResponse {
 
 export interface OrgCreateParams {
   /**
-   * Body param: user country
+   * user country
    */
   country?: string;
 
   /**
-   * Body param: optional description of the organization
+   * optional description of the organization
    */
   description?: string;
 
   /**
-   * Body param: Name of the organization that will be shown to users.
+   * Name of the organization that will be shown to users.
    */
   displayName?: string;
 
   /**
-   * Body param: Identify the initiator of the org request
+   * Identify the initiator of the org request
    */
   initiator?: string;
 
   /**
-   * Body param: Is NVIDIA internal org or not
+   * Is NVIDIA internal org or not
    */
   isInternal?: boolean;
 
   /**
-   * Body param: Organization name
+   * Organization name
    */
   name?: string;
 
   /**
-   * Body param: NVIDIA Cloud Account Identifier
+   * NVIDIA Cloud Account Identifier
    */
   ncaId?: string;
 
   /**
-   * Body param: NVIDIA Cloud Account Number
+   * NVIDIA Cloud Account Number
    */
   ncaNumber?: string;
 
   /**
-   * Body param: Org owner.
+   * Org owner.
    */
   orgOwner?: OrgCreateParams.OrgOwner;
 
   /**
-   * Body param: product end customer name for enterprise(Fleet Command) product
+   * product end customer name for enterprise(Fleet Command) product
    */
   pecName?: string;
 
   /**
-   * Body param: product end customer salesforce.com Id (external customer Id) for
+   * product end customer salesforce.com Id (external customer Id) for
    * enterprise(Fleet Command) product
    */
   pecSfdcId?: string;
 
-  /**
-   * Body param:
-   */
   productEnablements?: Array<OrgCreateParams.ProductEnablement>;
 
   /**
-   * Body param: This should be deprecated, use productEnablements instead
+   * This should be deprecated, use productEnablements instead
    */
   productSubscriptions?: Array<OrgCreateParams.ProductSubscription>;
 
   /**
-   * Body param: Proto org identifier
+   * Proto org identifier
    */
   protoOrgId?: string;
 
   /**
-   * Body param: Company or organization industry
+   * Company or organization industry
    */
   salesforceAccountIndustry?: string;
 
   /**
-   * Body param: Send email to org owner or not. Default is true
+   * Send email to org owner or not. Default is true
    */
   sendEmail?: boolean;
 
-  /**
-   * Body param:
-   */
   type?: 'UNKNOWN' | 'CLOUD' | 'ENTERPRISE' | 'INDIVIDUAL';
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace OrgCreateParams {
@@ -1471,7 +1454,6 @@ export namespace Orgs {
   export import UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
   export import Teams = TeamsAPI.Teams;
   export import TeamResponse = TeamsAPI.TeamResponse;
-  export import TeamListResponse = TeamsAPI.TeamListResponse;
   export import TeamListParams = TeamsAPI.TeamListParams;
   export import ProtoOrg = ProtoOrgAPI.ProtoOrg;
   export import ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;

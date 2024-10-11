@@ -1,18 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { Admin } from './admin';
+export { EntitlementRetrieveAllParams, Entitlements } from './entitlements';
 export {
-  OrgListResponse,
+  OrgOrgOwnerBackfillResponse,
+  OrgValidateResponse,
   OrgCreateParams,
-  OrgListParams,
-  OrgListResponsesPageNumberOrganizations,
+  OrgUpdateParams,
+  OrgEnableParams,
+  OrgValidateParams,
   Orgs,
 } from './orgs/index';
-export {
-  OrgListResponse,
-  OrgUpdateParams,
-  OrgListParams,
-  OrgListResponsesPageNumberOrganizations,
-  Org,
-} from './org/index';
-export { UserOrgOwnerBackfillResponse, UserInviteParams, UserMeParams, Users } from './users';
+export { UserCRMSyncResponse, Users } from './users';

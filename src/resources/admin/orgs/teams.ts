@@ -4,125 +4,37 @@ import { APIResource } from '../../../resource';
 import { isRequestOptions } from '../../../core';
 import * as Core from '../../../core';
 import * as TeamsAPI from './teams';
-import { type PageNumberTeamsParams } from '../../../pagination';
-import { TeamListResponsesPageNumberTeams } from '../../shared';
+import { type Response } from '../../../_shims/index';
 
 export class Teams extends APIResource {
   /**
    * List all Teams
    */
-  list(
-    orgName: string,
-    query?: TeamListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse>;
-  list(
-    orgName: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse>;
+  list(orgName: string, query?: TeamListParams, options?: Core.RequestOptions): Core.APIPromise<Response>;
+  list(orgName: string, options?: Core.RequestOptions): Core.APIPromise<Response>;
   list(
     orgName: string,
     query: TeamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse> {
+  ): Core.APIPromise<Response> {
     if (isRequestOptions(query)) {
       return this.list(orgName, {}, query);
     }
-    return this._client.getAPIList(`/v2/admin/org/${orgName}/teams`, TeamListResponsesPageNumberTeams, {
-      query,
-      ...options,
-    });
+    return this._client.get(`/v2/admin/org/${orgName}/teams`, { query, ...options, __binaryResponse: true });
   }
 }
 
-/**
- * Information about the team
- */
-export interface TeamListResponse {
+export interface TeamListParams {
   /**
-   * unique Id of this team.
+   * The page number of result
    */
-  id?: number;
+  'page-number'?: number;
 
   /**
-   * description of the team
+   * The page size of result
    */
-  description?: string;
+  'page-size'?: number;
 
-  /**
-   * Infinity manager setting definition
-   */
-  infinityManagerSettings?: TeamListResponse.InfinityManagerSettings;
-
-  /**
-   * indicates if the team is deleted or not
-   */
-  isDeleted?: boolean;
-
-  /**
-   * team name
-   */
-  name?: string;
-
-  /**
-   * Repo scan setting definition
-   */
-  repoScanSettings?: TeamListResponse.RepoScanSettings;
-}
-
-export namespace TeamListResponse {
-  /**
-   * Infinity manager setting definition
-   */
-  export interface InfinityManagerSettings {
-    /**
-     * Enable the infinity manager or not. Used both in org and team level object
-     */
-    infinityManagerEnabled?: boolean;
-
-    /**
-     * Allow override settings at team level. Only used in org level object
-     */
-    infinityManagerEnableTeamOverride?: boolean;
-  }
-
-  /**
-   * Repo scan setting definition
-   */
-  export interface RepoScanSettings {
-    /**
-     * Allow org admin to override the org level repo scan settings
-     */
-    repoScanAllowOverride?: boolean;
-
-    /**
-     * Allow repository scanning by default
-     */
-    repoScanByDefault?: boolean;
-
-    /**
-     * Enable the repository scan or not. Only used in org level object
-     */
-    repoScanEnabled?: boolean;
-
-    /**
-     * Sends notification to end user after scanning is done
-     */
-    repoScanEnableNotifications?: boolean;
-
-    /**
-     * Allow override settings at team level. Only used in org level object
-     */
-    repoScanEnableTeamOverride?: boolean;
-
-    /**
-     * Allow showing scan results to CLI or UI
-     */
-    repoScanShowResults?: boolean;
-  }
-}
-
-export interface TeamListParams extends PageNumberTeamsParams {
   /**
    * Get all team that has scan allow override only
    */
@@ -145,8 +57,5 @@ export interface TeamListParams extends PageNumberTeamsParams {
 }
 
 export namespace Teams {
-  export import TeamListResponse = TeamsAPI.TeamListResponse;
   export import TeamListParams = TeamsAPI.TeamListParams;
 }
-
-export { TeamListResponsesPageNumberTeams };

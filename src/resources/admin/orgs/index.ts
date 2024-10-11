@@ -1,18 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { NcaIDCreateParams, NcaIDs } from './nca-ids';
 export {
-  OffboardedListResponse,
-  OffboardedListParams,
-  OffboardedListResponsesPageNumberOrganizations,
-  Offboarded,
-} from './offboarded';
-export {
-  OrgListResponse,
+  OrgOrgOwnerBackfillResponse,
+  OrgValidateResponse,
   OrgCreateParams,
-  OrgListParams,
-  OrgListResponsesPageNumberOrganizations,
+  OrgUpdateParams,
+  OrgEnableParams,
+  OrgValidateParams,
   Orgs,
 } from './orgs';
-export { TeamListResponse, TeamListParams, TeamListResponsesPageNumberTeams, Teams } from './teams';
-export { Users } from './users';
+export { Teams } from './teams/index';
+export {
+  UserRemoveResponse,
+  UserCreateParams,
+  UserAddParams,
+  UserAddRoleParams,
+  UserGetEntitlementsParams,
+  Users,
+} from './users';

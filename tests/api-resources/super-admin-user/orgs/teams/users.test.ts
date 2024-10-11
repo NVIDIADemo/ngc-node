@@ -43,8 +43,6 @@ describe('resource users', () => {
         lastName: 'lastName',
         role: 'role',
       },
-      ncid: 'ncid',
-      VisitorID: 'VisitorID',
     });
   });
 
@@ -75,11 +73,7 @@ describe('resource users', () => {
         'org-name',
         'team-name',
         'id',
-        {
-          'user role, defaults to REGISTRY_READ': 'user role, defaults to REGISTRY_READ',
-          ncid: 'ncid',
-          VisitorID: 'VisitorID',
-        },
+        { 'user role, defaults to REGISTRY_READ': 'user role, defaults to REGISTRY_READ' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Ngc.NotFoundError);

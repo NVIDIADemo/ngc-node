@@ -10,7 +10,9 @@ const client = new Ngc({
 
 describe('resource users', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.superAdminUser.orgs.users.create('org-name', { email: 'xxxxxx' });
+    const responsePromise = client.admin.orgs.teams.users.create('org-name', 'team-name', {
+      email: 'xxxxxx',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +23,7 @@ describe('resource users', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.superAdminUser.orgs.users.create('org-name', {
+    const response = await client.admin.orgs.teams.users.create('org-name', 'team-name', {
       email: 'xxxxxx',
       'idp-id': 'idp-id',
       'send-email': true,
@@ -44,8 +46,15 @@ describe('resource users', () => {
     });
   });
 
+  test('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.orgs.teams.users.retrieve('org-name', 'team-name', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Ngc.NotFoundError);
+  });
+
   test('add', async () => {
-    const responsePromise = client.superAdminUser.orgs.users.add('org-name', 'id');
+    const responsePromise = client.admin.orgs.teams.users.add('org-name', 'team-name', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,15 +67,16 @@ describe('resource users', () => {
   test('add: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.superAdminUser.orgs.users.add('org-name', 'id', { path: '/_stainless_unknown_path' }),
+      client.admin.orgs.teams.users.add('org-name', 'team-name', 'id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Ngc.NotFoundError);
   });
 
   test('add: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.superAdminUser.orgs.users.add(
+      client.admin.orgs.teams.users.add(
         'org-name',
+        'team-name',
         'id',
         { 'user role, defaults to REGISTRY_READ': 'user role, defaults to REGISTRY_READ' },
         { path: '/_stainless_unknown_path' },
@@ -74,8 +84,8 @@ describe('resource users', () => {
     ).rejects.toThrow(Ngc.NotFoundError);
   });
 
-  test('remove', async () => {
-    const responsePromise = client.superAdminUser.orgs.users.remove('org-name', 'id');
+  test('addRole', async () => {
+    const responsePromise = client.admin.orgs.teams.users.addRole('org-name', 'team-name', 'id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -85,10 +95,49 @@ describe('resource users', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('remove: request options instead of params are passed correctly', async () => {
+  test('addRole: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.superAdminUser.orgs.users.remove('org-name', 'id', { path: '/_stainless_unknown_path' }),
+      client.admin.orgs.teams.users.addRole('org-name', 'team-name', 'id', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Ngc.NotFoundError);
+  });
+
+  test('addRole: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.orgs.teams.users.addRole(
+        'org-name',
+        'team-name',
+        'id',
+        { roles: ['string', 'string', 'string'] },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Ngc.NotFoundError);
+  });
+
+  test('retrieveUser', async () => {
+    const responsePromise = client.admin.orgs.teams.users.retrieveUser(
+      'org-name',
+      'team-name',
+      'user-email-or-id',
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieveUser: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.orgs.teams.users.retrieveUser('org-name', 'team-name', 'user-email-or-id', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Ngc.NotFoundError);
   });
 });

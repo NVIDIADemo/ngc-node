@@ -20,7 +20,7 @@ export class Users extends APIResource {
     params: UserCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { 'idp-id': idpId, 'send-email': sendEmail, ncid, VisitorID, ...body } = params;
+    const { 'idp-id': idpId, 'send-email': sendEmail, ...body } = params;
     return this._client.post(`/v2/org/${orgName}/users`, {
       query: { 'idp-id': idpId, 'send-email': sendEmail },
       body,
@@ -86,7 +86,7 @@ export class Users extends APIResource {
     params: UserAddRoleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { roles, ncid, VisitorID } = params;
+    const { roles } = params;
     return this._client.patch(`/v3/orgs/${orgName}/users/${userEmailOrId}/add-role`, {
       query: { roles },
       ...options,
@@ -366,7 +366,7 @@ export namespace UserListResponse {
     /**
      * Information about the team
      */
-    team?: Role.Team;
+    team?: Shared.Team;
 
     /**
      * List of team role types that the user have
@@ -747,93 +747,6 @@ export namespace UserListResponse {
        */
       userId?: number;
     }
-
-    /**
-     * Information about the team
-     */
-    export interface Team {
-      /**
-       * unique Id of this team.
-       */
-      id?: number;
-
-      /**
-       * description of the team
-       */
-      description?: string;
-
-      /**
-       * Infinity manager setting definition
-       */
-      infinityManagerSettings?: Team.InfinityManagerSettings;
-
-      /**
-       * indicates if the team is deleted or not
-       */
-      isDeleted?: boolean;
-
-      /**
-       * team name
-       */
-      name?: string;
-
-      /**
-       * Repo scan setting definition
-       */
-      repoScanSettings?: Team.RepoScanSettings;
-    }
-
-    export namespace Team {
-      /**
-       * Infinity manager setting definition
-       */
-      export interface InfinityManagerSettings {
-        /**
-         * Enable the infinity manager or not. Used both in org and team level object
-         */
-        infinityManagerEnabled?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        infinityManagerEnableTeamOverride?: boolean;
-      }
-
-      /**
-       * Repo scan setting definition
-       */
-      export interface RepoScanSettings {
-        /**
-         * Allow org admin to override the org level repo scan settings
-         */
-        repoScanAllowOverride?: boolean;
-
-        /**
-         * Allow repository scanning by default
-         */
-        repoScanByDefault?: boolean;
-
-        /**
-         * Enable the repository scan or not. Only used in org level object
-         */
-        repoScanEnabled?: boolean;
-
-        /**
-         * Sends notification to end user after scanning is done
-         */
-        repoScanEnableNotifications?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        repoScanEnableTeamOverride?: boolean;
-
-        /**
-         * Allow showing scan results to CLI or UI
-         */
-        repoScanShowResults?: boolean;
-      }
-    }
   }
 
   /**
@@ -1049,16 +962,6 @@ export interface UserCreateParams {
    * Body param: Metadata information about the user.
    */
   userMetadata?: UserCreateParams.UserMetadata;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace UserCreateParams {
@@ -1169,20 +1072,7 @@ export interface UserDeleteParams {
 }
 
 export interface UserAddRoleParams {
-  /**
-   * Query param:
-   */
   roles: Array<string>;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export interface UserRemoveRoleParams {

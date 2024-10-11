@@ -2,13 +2,7 @@
 
 export { NcaInvitationCreateParams, NcaInvitations } from './nca-invitations';
 export { StarfleetIDs } from './starfleet-ids';
-export {
-  TeamResponse,
-  TeamListResponse,
-  TeamListParams,
-  TeamListResponsesPageNumberTeams,
-  Teams,
-} from './teams';
+export { TeamResponse, TeamListParams, Teams } from './teams';
 export {
   UserDeleteResponse,
   UserDeleteParams,

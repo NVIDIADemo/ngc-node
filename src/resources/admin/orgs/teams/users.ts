@@ -5,6 +5,7 @@ import { isRequestOptions } from '../../../../core';
 import * as Core from '../../../../core';
 import * as UsersAPI from './users';
 import * as Shared from '../../../shared';
+import { type Response } from '../../../../_shims/index';
 
 export class Users extends APIResource {
   /**
@@ -21,6 +22,32 @@ export class Users extends APIResource {
       query: { 'idp-id': idpId, 'send-email': sendEmail },
       body,
       ...options,
+    });
+  }
+
+  /**
+   * Get one team
+   */
+  retrieve(orgName: string, teamName: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/v2/admin/org/${orgName}/teams/${teamName}`, {
+      ...options,
+      __binaryResponse: true,
+    });
+  }
+
+  /**
+   * Edit a Team
+   */
+  update(
+    orgName: string,
+    teamName: string,
+    body: UserUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response> {
+    return this._client.patch(`/v2/admin/org/${orgName}/teams/${teamName}`, {
+      body,
+      ...options,
+      __binaryResponse: true,
     });
   }
 
@@ -55,6 +82,51 @@ export class Users extends APIResource {
       query: { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead },
       ...options,
     });
+  }
+
+  /**
+   * Add user role in team.
+   */
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params?: UserAddRoleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params: UserAddRoleParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User> {
+    if (isRequestOptions(params)) {
+      return this.addRole(orgName, teamName, id, {}, params);
+    }
+    const { roles } = params;
+    return this._client.patch(`/v2/admin/org/${orgName}/team/${teamName}/users/${id}/add-role`, {
+      query: { roles },
+      ...options,
+    });
+  }
+
+  /**
+   * Get info and role/invitation in a team by email or id
+   */
+  retrieveUser(
+    orgName: string,
+    teamName: string,
+    userEmailOrId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User> {
+    return this._client.get(`/v3/orgs/${orgName}/teams/${teamName}/users/${userEmailOrId}`, options);
   }
 }
 
@@ -158,11 +230,86 @@ export namespace UserCreateParams {
   }
 }
 
+export interface UserUpdateParams {
+  /**
+   * description of the team
+   */
+  description?: string;
+
+  /**
+   * Infinity manager setting definition
+   */
+  infinityManagerSettings?: UserUpdateParams.InfinityManagerSettings;
+
+  /**
+   * Repo scan setting definition
+   */
+  repoScanSettings?: UserUpdateParams.RepoScanSettings;
+}
+
+export namespace UserUpdateParams {
+  /**
+   * Infinity manager setting definition
+   */
+  export interface InfinityManagerSettings {
+    /**
+     * Enable the infinity manager or not. Used both in org and team level object
+     */
+    infinityManagerEnabled?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    infinityManagerEnableTeamOverride?: boolean;
+  }
+
+  /**
+   * Repo scan setting definition
+   */
+  export interface RepoScanSettings {
+    /**
+     * Allow org admin to override the org level repo scan settings
+     */
+    repoScanAllowOverride?: boolean;
+
+    /**
+     * Allow repository scanning by default
+     */
+    repoScanByDefault?: boolean;
+
+    /**
+     * Enable the repository scan or not. Only used in org level object
+     */
+    repoScanEnabled?: boolean;
+
+    /**
+     * Sends notification to end user after scanning is done
+     */
+    repoScanEnableNotifications?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    repoScanEnableTeamOverride?: boolean;
+
+    /**
+     * Allow showing scan results to CLI or UI
+     */
+    repoScanShowResults?: boolean;
+  }
+}
+
 export interface UserAddParams {
   'user role, defaults to REGISTRY_READ'?: string;
 }
 
+export interface UserAddRoleParams {
+  roles?: Array<string>;
+}
+
 export namespace Users {
   export import UserCreateParams = UsersAPI.UserCreateParams;
+  export import UserUpdateParams = UsersAPI.UserUpdateParams;
   export import UserAddParams = UsersAPI.UserAddParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
 }

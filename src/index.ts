@@ -122,23 +122,9 @@ export class Ngc extends Core.APIClient {
   }
 
   orgs: API.Orgs = new API.Orgs(this);
+  me: API.Me = new API.Me(this);
   admin: API.Admin = new API.Admin(this);
-  users: API.Users = new API.Users(this);
-  organizations: API.Organizations = new API.Organizations(this);
-  superAdminUser: API.SuperAdminUser = new API.SuperAdminUser(this);
-  superAdminOrg: API.SuperAdminOrg = new API.SuperAdminOrg(this);
-  superAdminOrgControllers: API.SuperAdminOrgControllers = new API.SuperAdminOrgControllers(this);
-  usersManagement: API.UsersManagement = new API.UsersManagement(this);
-  org: API.Org = new API.Org(this);
-  v2AdminOrgUsers: API.V2AdminOrgUsers = new API.V2AdminOrgUsers(this);
-  v2AdminOrgTeams: API.V2AdminOrgTeams = new API.V2AdminOrgTeams(this);
-  v2AdminOrgTeamUsers: API.V2AdminOrgTeamUsers = new API.V2AdminOrgTeamUsers(this);
-  v2AdminOrgEntitlements: API.V2AdminOrgEntitlements = new API.V2AdminOrgEntitlements(this);
-  v2AdminEntitlements: API.V2AdminEntitlements = new API.V2AdminEntitlements(this);
   services: API.Services = new API.Services(this);
-  v3OrgsUsers: API.V3OrgsUsers = new API.V3OrgsUsers(this);
-  v3OrgsTeamsUsers: API.V3OrgsTeamsUsers = new API.V3OrgsTeamsUsers(this);
-  v3Orgs: API.V3Orgs = new API.V3Orgs(this);
   roles: API.Roles = new API.Roles(this);
   publicKeys: API.PublicKeys = new API.PublicKeys(this);
   health: API.Health = new API.Health(this);
@@ -231,50 +217,13 @@ export namespace Ngc {
   export import OrgUpdateParams = API.OrgUpdateParams;
   export import OrgListParams = API.OrgListParams;
 
+  export import Me = API.Me;
+
   export import Admin = API.Admin;
-
-  export import Users = API.Users;
-
-  export import Organizations = API.Organizations;
-
-  export import SuperAdminUser = API.SuperAdminUser;
-  export import SuperAdminUserCRMSyncResponse = API.SuperAdminUserCRMSyncResponse;
-
-  export import SuperAdminOrg = API.SuperAdminOrg;
-  export import SuperAdminOrgCreateParams = API.SuperAdminOrgCreateParams;
-
-  export import SuperAdminOrgControllers = API.SuperAdminOrgControllers;
-
-  export import UsersManagement = API.UsersManagement;
-
-  export import Org = API.Org;
-
-  export import V2AdminOrgUsers = API.V2AdminOrgUsers;
-  export import V2AdminOrgUserAddRoleParams = API.V2AdminOrgUserAddRoleParams;
-
-  export import V2AdminOrgTeams = API.V2AdminOrgTeams;
-  export import V2AdminOrgTeamUpdateParams = API.V2AdminOrgTeamUpdateParams;
-
-  export import V2AdminOrgTeamUsers = API.V2AdminOrgTeamUsers;
-  export import V2AdminOrgTeamUserAddRoleParams = API.V2AdminOrgTeamUserAddRoleParams;
-
-  export import V2AdminOrgEntitlements = API.V2AdminOrgEntitlements;
-  export import V2AdminOrgEntitlementRetrieveAllParams = API.V2AdminOrgEntitlementRetrieveAllParams;
-
-  export import V2AdminEntitlements = API.V2AdminEntitlements;
-  export import V2AdminEntitlementRetrieveAllParams = API.V2AdminEntitlementRetrieveAllParams;
 
   export import Services = API.Services;
   export import ServiceVersionResponse = API.ServiceVersionResponse;
   export import ServiceVersionParams = API.ServiceVersionParams;
-
-  export import V3OrgsUsers = API.V3OrgsUsers;
-
-  export import V3OrgsTeamsUsers = API.V3OrgsTeamsUsers;
-
-  export import V3Orgs = API.V3Orgs;
-  export import OrgInvitation = API.OrgInvitation;
-  export import V3OrgValidateParams = API.V3OrgValidateParams;
 
   export import Roles = API.Roles;
   export import UserRoleDefinitions = API.UserRoleDefinitions;
@@ -289,6 +238,7 @@ export namespace Ngc {
 
   export import Health = API.Health;
   export import MeteringResultList = API.MeteringResultList;
+  export import Team = API.Team;
   export import TeamList = API.TeamList;
   export import User = API.User;
   export import UserInvitationList = API.UserInvitationList;

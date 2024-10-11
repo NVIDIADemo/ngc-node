@@ -56,8 +56,6 @@ describe('resource users', () => {
   test('addRole: required and optional params', async () => {
     const response = await client.orgs.teams.users.addRole('org-name', 'team-name', 'user-email-or-id', {
       roles: ['string', 'string', 'string'],
-      ncid: 'ncid',
-      VisitorID: 'VisitorID',
     });
   });
 
