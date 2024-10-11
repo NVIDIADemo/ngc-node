@@ -1,6 +1,6 @@
 {
   "name": "ngc",
-  "version": "0.0.1-alpha.0",
+  "version": "2.0.0",
   "description": "The official TypeScript library for the Ngc API",
   "author": "Ngc <dev-feedback@ngc.com>",
   "types": "dist/index.d.ts",
