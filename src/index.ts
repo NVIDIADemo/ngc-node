@@ -122,7 +122,6 @@ export class Ngc extends Core.APIClient {
   }
 
   orgs: API.Orgs = new API.Orgs(this);
-  admin: API.Admin = new API.Admin(this);
   users: API.Users = new API.Users(this);
   organizations: API.Organizations = new API.Organizations(this);
   superAdminUser: API.SuperAdminUser = new API.SuperAdminUser(this);
@@ -230,8 +229,6 @@ export namespace Ngc {
   export import OrgCreateParams = API.OrgCreateParams;
   export import OrgUpdateParams = API.OrgUpdateParams;
   export import OrgListParams = API.OrgListParams;
-
-  export import Admin = API.Admin;
 
   export import Users = API.Users;
 
