@@ -41,8 +41,6 @@ describe('resource users', () => {
         lastName: 'lastName',
         role: 'role',
       },
-      ncid: 'ncid',
-      VisitorID: 'VisitorID',
     });
   });
 
@@ -139,8 +137,6 @@ describe('resource users', () => {
   test('addRole: required and optional params', async () => {
     const response = await client.orgs.users.addRole('org-name', 'user-email-or-id', {
       roles: ['string', 'string', 'string'],
-      ncid: 'ncid',
-      VisitorID: 'VisitorID',
     });
   });
 

@@ -80,8 +80,6 @@ describe('resource superAdminOrg', () => {
       salesforceAccountIndustry: 'salesforceAccountIndustry',
       sendEmail: true,
       type: 'UNKNOWN',
-      ncid: 'ncid',
-      VisitorID: 'VisitorID',
     });
   });
 });
