@@ -20,7 +20,7 @@ export class Users extends APIResource {
     params: UserCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { 'idp-id': idpId, 'send-email': sendEmail, ncid, VisitorID, ...body } = params;
+    const { 'idp-id': idpId, 'send-email': sendEmail, ...body } = params;
     return this._client.post(`/v2/org/${orgName}/users`, {
       query: { 'idp-id': idpId, 'send-email': sendEmail },
       body,
@@ -86,7 +86,7 @@ export class Users extends APIResource {
     params: UserAddRoleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { roles, ncid, VisitorID } = params;
+    const { roles } = params;
     return this._client.patch(`/v3/orgs/${orgName}/users/${userEmailOrId}/add-role`, {
       query: { roles },
       ...options,
@@ -1049,16 +1049,6 @@ export interface UserCreateParams {
    * Body param: Metadata information about the user.
    */
   userMetadata?: UserCreateParams.UserMetadata;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace UserCreateParams {
@@ -1169,20 +1159,7 @@ export interface UserDeleteParams {
 }
 
 export interface UserAddRoleParams {
-  /**
-   * Query param:
-   */
   roles: Array<string>;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export interface UserRemoveRoleParams {

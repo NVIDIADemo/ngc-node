@@ -50,7 +50,7 @@ export class Users extends APIResource {
     params: UserAddRoleParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { roles, ncid, VisitorID } = params;
+    const { roles } = params;
     return this._client.patch(`/v3/orgs/${orgName}/teams/${teamName}/users/${userEmailOrId}/add-role`, {
       query: { roles },
       ...options,
@@ -140,20 +140,7 @@ export interface UserDeleteParams {
 }
 
 export interface UserAddRoleParams {
-  /**
-   * Query param:
-   */
   roles: Array<string>;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export interface UserRemoveRoleParams {
