@@ -18,4 +18,3 @@ export { PublicKeyRetrieveAllResponse, PublicKeys } from './public-keys';
 export { ServiceVersionResponse, ServiceVersionParams, Services } from './services';
 export { SwaggerResources } from './swagger-resources/swagger-resources';
 export { UserRoleDefinitions, RoleRetrieveAllParams, Roles } from './roles';
-export { UsersManagement } from './users-management/users-management';
