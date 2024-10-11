@@ -2,7 +2,6 @@
 
 export * from './shared';
 export { Health } from './health/health';
-export { Org } from './org/org';
 export { OrgInvitation, V3OrgValidateParams, V3Orgs } from './v3-orgs';
 export {
   OrgList,
