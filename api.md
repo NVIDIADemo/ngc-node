@@ -129,14 +129,10 @@ Methods:
 
 ## Orgs
 
-Types:
-
-- <code><a href="./src/resources/admin/orgs/orgs.ts">OrgListResponse</a></code>
-
 Methods:
 
 - <code title="post /v3/admin/orgs">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">create</a>({ ...params }) -> Response</code>
-- <code title="get /v2/admin/org">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">list</a>({ ...params }) -> OrgListResponsesPageNumberOrganizations</code>
+- <code title="get /v2/admin/org">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">list</a>({ ...params }) -> Response</code>
 
 ### NcaIDs
 
@@ -146,23 +142,15 @@ Methods:
 
 ### Offboarded
 
-Types:
-
-- <code><a href="./src/resources/admin/orgs/offboarded.ts">OffboardedListResponse</a></code>
-
 Methods:
 
-- <code title="get /v2/admin/orgs/offboarded">client.admin.orgs.offboarded.<a href="./src/resources/admin/orgs/offboarded.ts">list</a>({ ...params }) -> OffboardedListResponsesPageNumberOrganizations</code>
+- <code title="get /v2/admin/orgs/offboarded">client.admin.orgs.offboarded.<a href="./src/resources/admin/orgs/offboarded.ts">list</a>({ ...params }) -> Response</code>
 
 ### Teams
 
-Types:
-
-- <code><a href="./src/resources/admin/orgs/teams.ts">TeamListResponse</a></code>
-
 Methods:
 
-- <code title="get /v2/admin/org/{org-name}/teams">client.admin.orgs.teams.<a href="./src/resources/admin/orgs/teams.ts">list</a>(orgName, { ...params }) -> TeamListResponsesPageNumberTeams</code>
+- <code title="get /v2/admin/org/{org-name}/teams">client.admin.orgs.teams.<a href="./src/resources/admin/orgs/teams.ts">list</a>(orgName, { ...params }) -> Response</code>
 
 ### Users
 
@@ -181,15 +169,11 @@ Methods:
 
 ## Org
 
-Types:
-
-- <code><a href="./src/resources/admin/org/org.ts">OrgListResponse</a></code>
-
 Methods:
 
 - <code title="get /v2/admin/org/{org-name}">client.admin.org.<a href="./src/resources/admin/org/org.ts">retrieve</a>(orgName) -> Response</code>
 - <code title="patch /v2/admin/org/{org-name}">client.admin.org.<a href="./src/resources/admin/org/org.ts">update</a>(orgName, { ...params }) -> Response</code>
-- <code title="get /v3/admin/org">client.admin.org.<a href="./src/resources/admin/org/org.ts">list</a>({ ...params }) -> OrgListResponsesPageNumberOrganizations</code>
+- <code title="get /v3/admin/org">client.admin.org.<a href="./src/resources/admin/org/org.ts">list</a>({ ...params }) -> Response</code>
 
 ### Users
 
@@ -204,13 +188,13 @@ Methods:
 
 Methods:
 
-- <code title="get /v2/admin/org/{org-name}/registry/metering/downsample">client.admin.org.registry.metering.<a href="./src/resources/admin/org/registry/metering.ts">downsample</a>(orgName, { ...params }) -> MeteringResultList</code>
+- <code title="get /v2/admin/org/{org-name}/registry/metering/downsample">client.admin.org.registry.metering.<a href="./src/resources/admin/org/registry/metering.ts">downsample</a>(orgName, { ...params }) -> Response</code>
 
 ### Validate
 
 Methods:
 
-- <code title="get /v2/admin/org/validate">client.admin.org.validate.<a href="./src/resources/admin/org/validate.ts">retrieveAll</a>({ ...params }) -> OrgList</code>
+- <code title="get /v2/admin/org/validate">client.admin.org.validate.<a href="./src/resources/admin/org/validate.ts">retrieveAll</a>({ ...params }) -> Response</code>
 
 ### Team
 
