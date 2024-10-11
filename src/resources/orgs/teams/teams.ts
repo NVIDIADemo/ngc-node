@@ -4,11 +4,12 @@ import { APIResource } from '../../../resource';
 import { isRequestOptions } from '../../../core';
 import * as Core from '../../../core';
 import * as TeamsAPI from './teams';
+import * as Shared from '../../shared';
+import { TeamsPageNumberTeams } from '../../shared';
 import * as NcaInvitationsAPI from './nca-invitations';
 import * as StarfleetIDsAPI from './starfleet-ids';
 import * as UsersAPI from './users';
 import { type PageNumberTeamsParams } from '../../../pagination';
-import { TeamListResponsesPageNumberTeams } from '../../shared';
 
 export class Teams extends APIResource {
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
@@ -22,23 +23,17 @@ export class Teams extends APIResource {
     orgName: string,
     query?: TeamListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse>;
-  list(
-    orgName: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse>;
+  ): Core.PagePromise<TeamsPageNumberTeams, Shared.Team>;
+  list(orgName: string, options?: Core.RequestOptions): Core.PagePromise<TeamsPageNumberTeams, Shared.Team>;
   list(
     orgName: string,
     query: TeamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TeamListResponsesPageNumberTeams, TeamListResponse> {
+  ): Core.PagePromise<TeamsPageNumberTeams, Shared.Team> {
     if (isRequestOptions(query)) {
       return this.list(orgName, {}, query);
     }
-    return this._client.getAPIList(`/v2/org/${orgName}/teams`, TeamListResponsesPageNumberTeams, {
-      query,
-      ...options,
-    });
+    return this._client.getAPIList(`/v2/org/${orgName}/teams`, TeamsPageNumberTeams, { query, ...options });
   }
 }
 
@@ -51,7 +46,7 @@ export interface TeamResponse {
   /**
    * Information about the team
    */
-  team?: TeamResponse.Team;
+  team?: Shared.Team;
 }
 
 export namespace TeamResponse {
@@ -89,187 +84,12 @@ export namespace TeamResponse {
 
     statusDescription?: string;
   }
-
-  /**
-   * Information about the team
-   */
-  export interface Team {
-    /**
-     * unique Id of this team.
-     */
-    id?: number;
-
-    /**
-     * description of the team
-     */
-    description?: string;
-
-    /**
-     * Infinity manager setting definition
-     */
-    infinityManagerSettings?: Team.InfinityManagerSettings;
-
-    /**
-     * indicates if the team is deleted or not
-     */
-    isDeleted?: boolean;
-
-    /**
-     * team name
-     */
-    name?: string;
-
-    /**
-     * Repo scan setting definition
-     */
-    repoScanSettings?: Team.RepoScanSettings;
-  }
-
-  export namespace Team {
-    /**
-     * Infinity manager setting definition
-     */
-    export interface InfinityManagerSettings {
-      /**
-       * Enable the infinity manager or not. Used both in org and team level object
-       */
-      infinityManagerEnabled?: boolean;
-
-      /**
-       * Allow override settings at team level. Only used in org level object
-       */
-      infinityManagerEnableTeamOverride?: boolean;
-    }
-
-    /**
-     * Repo scan setting definition
-     */
-    export interface RepoScanSettings {
-      /**
-       * Allow org admin to override the org level repo scan settings
-       */
-      repoScanAllowOverride?: boolean;
-
-      /**
-       * Allow repository scanning by default
-       */
-      repoScanByDefault?: boolean;
-
-      /**
-       * Enable the repository scan or not. Only used in org level object
-       */
-      repoScanEnabled?: boolean;
-
-      /**
-       * Sends notification to end user after scanning is done
-       */
-      repoScanEnableNotifications?: boolean;
-
-      /**
-       * Allow override settings at team level. Only used in org level object
-       */
-      repoScanEnableTeamOverride?: boolean;
-
-      /**
-       * Allow showing scan results to CLI or UI
-       */
-      repoScanShowResults?: boolean;
-    }
-  }
-}
-
-/**
- * Information about the team
- */
-export interface TeamListResponse {
-  /**
-   * unique Id of this team.
-   */
-  id?: number;
-
-  /**
-   * description of the team
-   */
-  description?: string;
-
-  /**
-   * Infinity manager setting definition
-   */
-  infinityManagerSettings?: TeamListResponse.InfinityManagerSettings;
-
-  /**
-   * indicates if the team is deleted or not
-   */
-  isDeleted?: boolean;
-
-  /**
-   * team name
-   */
-  name?: string;
-
-  /**
-   * Repo scan setting definition
-   */
-  repoScanSettings?: TeamListResponse.RepoScanSettings;
-}
-
-export namespace TeamListResponse {
-  /**
-   * Infinity manager setting definition
-   */
-  export interface InfinityManagerSettings {
-    /**
-     * Enable the infinity manager or not. Used both in org and team level object
-     */
-    infinityManagerEnabled?: boolean;
-
-    /**
-     * Allow override settings at team level. Only used in org level object
-     */
-    infinityManagerEnableTeamOverride?: boolean;
-  }
-
-  /**
-   * Repo scan setting definition
-   */
-  export interface RepoScanSettings {
-    /**
-     * Allow org admin to override the org level repo scan settings
-     */
-    repoScanAllowOverride?: boolean;
-
-    /**
-     * Allow repository scanning by default
-     */
-    repoScanByDefault?: boolean;
-
-    /**
-     * Enable the repository scan or not. Only used in org level object
-     */
-    repoScanEnabled?: boolean;
-
-    /**
-     * Sends notification to end user after scanning is done
-     */
-    repoScanEnableNotifications?: boolean;
-
-    /**
-     * Allow override settings at team level. Only used in org level object
-     */
-    repoScanEnableTeamOverride?: boolean;
-
-    /**
-     * Allow showing scan results to CLI or UI
-     */
-    repoScanShowResults?: boolean;
-  }
 }
 
 export interface TeamListParams extends PageNumberTeamsParams {}
 
 export namespace Teams {
   export import TeamResponse = TeamsAPI.TeamResponse;
-  export import TeamListResponse = TeamsAPI.TeamListResponse;
   export import TeamListParams = TeamsAPI.TeamListParams;
   export import Users = UsersAPI.Users;
   export import UserDeleteResponse = UsersAPI.UserDeleteResponse;
@@ -281,4 +101,4 @@ export namespace Teams {
   export import NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
 }
 
-export { TeamListResponsesPageNumberTeams };
+export { TeamsPageNumberTeams };

@@ -366,7 +366,7 @@ export namespace UserListResponse {
     /**
      * Information about the team
      */
-    team?: Role.Team;
+    team?: Shared.Team;
 
     /**
      * List of team role types that the user have
@@ -746,93 +746,6 @@ export namespace UserListResponse {
        * Unique ID of the user who submitted the job
        */
       userId?: number;
-    }
-
-    /**
-     * Information about the team
-     */
-    export interface Team {
-      /**
-       * unique Id of this team.
-       */
-      id?: number;
-
-      /**
-       * description of the team
-       */
-      description?: string;
-
-      /**
-       * Infinity manager setting definition
-       */
-      infinityManagerSettings?: Team.InfinityManagerSettings;
-
-      /**
-       * indicates if the team is deleted or not
-       */
-      isDeleted?: boolean;
-
-      /**
-       * team name
-       */
-      name?: string;
-
-      /**
-       * Repo scan setting definition
-       */
-      repoScanSettings?: Team.RepoScanSettings;
-    }
-
-    export namespace Team {
-      /**
-       * Infinity manager setting definition
-       */
-      export interface InfinityManagerSettings {
-        /**
-         * Enable the infinity manager or not. Used both in org and team level object
-         */
-        infinityManagerEnabled?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        infinityManagerEnableTeamOverride?: boolean;
-      }
-
-      /**
-       * Repo scan setting definition
-       */
-      export interface RepoScanSettings {
-        /**
-         * Allow org admin to override the org level repo scan settings
-         */
-        repoScanAllowOverride?: boolean;
-
-        /**
-         * Allow repository scanning by default
-         */
-        repoScanByDefault?: boolean;
-
-        /**
-         * Enable the repository scan or not. Only used in org level object
-         */
-        repoScanEnabled?: boolean;
-
-        /**
-         * Sends notification to end user after scanning is done
-         */
-        repoScanEnableNotifications?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        repoScanEnableTeamOverride?: boolean;
-
-        /**
-         * Allow showing scan results to CLI or UI
-         */
-        repoScanShowResults?: boolean;
-      }
     }
   }
 

@@ -15,13 +15,7 @@ export {
 } from './orgs';
 export { ProtoOrgCreateParams, ProtoOrg } from './proto-org';
 export { StarfleetIDs } from './starfleet-ids';
-export {
-  TeamResponse,
-  TeamListResponse,
-  TeamListParams,
-  TeamListResponsesPageNumberTeams,
-  Teams,
-} from './teams/index';
+export { TeamResponse, TeamListParams, Teams } from './teams/index';
 export {
   UserListResponse,
   UserDeleteResponse,
