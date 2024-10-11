@@ -123,7 +123,6 @@ export class Ngc extends Core.APIClient {
 
   orgs: API.Orgs = new API.Orgs(this);
   users: API.Users = new API.Users(this);
-  organizations: API.Organizations = new API.Organizations(this);
   superAdminUser: API.SuperAdminUser = new API.SuperAdminUser(this);
   superAdminOrg: API.SuperAdminOrg = new API.SuperAdminOrg(this);
   superAdminOrgControllers: API.SuperAdminOrgControllers = new API.SuperAdminOrgControllers(this);
@@ -230,8 +229,6 @@ export namespace Ngc {
   export import OrgListParams = API.OrgListParams;
 
   export import Users = API.Users;
-
-  export import Organizations = API.Organizations;
 
   export import SuperAdminUser = API.SuperAdminUser;
   export import SuperAdminUserCRMSyncResponse = API.SuperAdminUserCRMSyncResponse;
