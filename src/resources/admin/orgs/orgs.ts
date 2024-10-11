@@ -1,143 +1,172 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../resource';
-import { isRequestOptions } from '../../../core';
 import * as Core from '../../../core';
 import * as OrgsAPI from './orgs';
-import * as NcaIDsAPI from './nca-ids';
-import * as OffboardedAPI from './offboarded';
-import * as TeamsAPI from './teams';
 import * as UsersAPI from './users';
+import * as TeamsAPI from './teams/teams';
 import { type Response } from '../../../_shims/index';
 
 export class Orgs extends APIResource {
-  ncaIds: NcaIDsAPI.NcaIDs = new NcaIDsAPI.NcaIDs(this._client);
-  offboarded: OffboardedAPI.Offboarded = new OffboardedAPI.Offboarded(this._client);
-  teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
+  teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
 
   /**
-   * OrgCreateRequest is used to create the organization or when no nca_id is
-   * provided upfront, the OrgCreateRequest is stored as proto org, and proto org
-   * flow initiates (SuperAdmin privileges required)
+   * Create a new organization. (SuperAdmin privileges required)
    */
-  create(params: OrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    const { ncid, VisitorID, ...body } = params;
-    return this._client.post('/v3/admin/orgs', { body, ...options, __binaryResponse: true });
+  create(body: OrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/v2/admin/orgs', { body, ...options, __binaryResponse: true });
   }
 
   /**
-   * List all organizations. (SuperAdmin privileges required)
+   * Get organization or proto organization info. (SuperAdmin privileges required)
    */
-  list(query?: OrgListParams, options?: Core.RequestOptions): Core.APIPromise<Response>;
-  list(options?: Core.RequestOptions): Core.APIPromise<Response>;
-  list(
-    query: OrgListParams | Core.RequestOptions = {},
+  retrieve(orgName: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/v3/admin/org/${orgName}`, { ...options, __binaryResponse: true });
+  }
+
+  /**
+   * Update org information and settings. Superadmin privileges required
+   */
+  update(orgName: string, body: OrgUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.patch(`/v3/admin/org/${orgName}`, { body, ...options, __binaryResponse: true });
+  }
+
+  /**
+   * Backfill Orgs to Kratos
+   */
+  backfillOrgsToKratos(options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/v2/admin/backfill-orgs-to-kratos', { ...options, __binaryResponse: true });
+  }
+
+  /**
+   * Create org product enablement
+   */
+  enable(orgName: string, body: OrgEnableParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post(`/v2/admin/org/${orgName}/enablement`, {
+      body,
+      ...options,
+      __binaryResponse: true,
+    });
+  }
+
+  /**
+   * Backfill the org owner for users
+   */
+  orgOwnerBackfill(
+    orgName: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.get('/v2/admin/org', { query, ...options, __binaryResponse: true });
+  ): Core.APIPromise<OrgOrgOwnerBackfillResponse> {
+    return this._client.post(`/v2/admin/org/${orgName}/org-owner-backfill`, options);
+  }
+}
+
+export interface OrgOrgOwnerBackfillResponse {
+  requestStatus?: OrgOrgOwnerBackfillResponse.RequestStatus;
+}
+
+export namespace OrgOrgOwnerBackfillResponse {
+  export interface RequestStatus {
+    requestId?: string;
+
+    serverId?: string;
+
+    /**
+     * Describes response status reported by the server.
+     */
+    statusCode?:
+      | 'UNKNOWN'
+      | 'SUCCESS'
+      | 'UNAUTHORIZED'
+      | 'PAYMENT_REQUIRED'
+      | 'FORBIDDEN'
+      | 'TIMEOUT'
+      | 'EXISTS'
+      | 'NOT_FOUND'
+      | 'INTERNAL_ERROR'
+      | 'INVALID_REQUEST'
+      | 'INVALID_REQUEST_VERSION'
+      | 'INVALID_REQUEST_DATA'
+      | 'METHOD_NOT_ALLOWED'
+      | 'CONFLICT'
+      | 'UNPROCESSABLE_ENTITY'
+      | 'TOO_MANY_REQUESTS'
+      | 'INSUFFICIENT_STORAGE'
+      | 'SERVICE_UNAVAILABLE'
+      | 'PAYLOAD_TOO_LARGE'
+      | 'NOT_ACCEPTABLE'
+      | 'UNAVAILABLE_FOR_LEGAL_REASONS'
+      | 'BAD_GATEWAY';
+
+    statusDescription?: string;
   }
 }
 
 export interface OrgCreateParams {
   /**
-   * Body param: user country
+   * Org owner.
+   */
+  orgOwner: OrgCreateParams.OrgOwner;
+
+  /**
+   * user country
    */
   country?: string;
 
   /**
-   * Body param: optional description of the organization
+   * optional description of the organization
    */
   description?: string;
 
   /**
-   * Body param: Name of the organization that will be shown to users.
+   * Name of the organization that will be shown to users.
    */
   displayName?: string;
 
   /**
-   * Body param: Identify the initiator of the org request
+   * Identity Provider ID.
    */
-  initiator?: string;
+  idpId?: string;
 
   /**
-   * Body param: Is NVIDIA internal org or not
+   * Is NVIDIA internal org or not
    */
   isInternal?: boolean;
 
   /**
-   * Body param: Organization name
+   * Organization name
    */
   name?: string;
 
   /**
-   * Body param: NVIDIA Cloud Account Identifier
-   */
-  ncaId?: string;
-
-  /**
-   * Body param: NVIDIA Cloud Account Number
-   */
-  ncaNumber?: string;
-
-  /**
-   * Body param: Org owner.
-   */
-  orgOwner?: OrgCreateParams.OrgOwner;
-
-  /**
-   * Body param: product end customer name for enterprise(Fleet Command) product
+   * product end customer name for enterprise(Fleet Command) product
    */
   pecName?: string;
 
   /**
-   * Body param: product end customer salesforce.com Id (external customer Id) for
+   * product end customer salesforce.com Id (external customer Id) for
    * enterprise(Fleet Command) product
    */
   pecSfdcId?: string;
 
-  /**
-   * Body param:
-   */
   productEnablements?: Array<OrgCreateParams.ProductEnablement>;
 
   /**
-   * Body param: This should be deprecated, use productEnablements instead
+   * This should be deprecated, use productEnablements instead
    */
   productSubscriptions?: Array<OrgCreateParams.ProductSubscription>;
 
   /**
-   * Body param: Proto org identifier
-   */
-  protoOrgId?: string;
-
-  /**
-   * Body param: Company or organization industry
+   * Company or organization industry
    */
   salesforceAccountIndustry?: string;
 
   /**
-   * Body param: Send email to org owner or not. Default is true
+   * Send email to org owner or not. Default is true
    */
   sendEmail?: boolean;
 
-  /**
-   * Body param:
-   */
   type?: 'UNKNOWN' | 'CLOUD' | 'ENTERPRISE' | 'INDIVIDUAL';
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace OrgCreateParams {
@@ -153,17 +182,12 @@ export namespace OrgCreateParams {
     /**
      * Org owner name.
      */
-    fullName?: string;
+    fullName: string;
 
     /**
-     * Identity Provider ID of the org owner.
+     * Last time the org owner logged in.
      */
-    idpId?: string;
-
-    /**
-     * Starfleet ID of the org owner.
-     */
-    starfleetId?: string;
+    lastLoginDate?: string;
   }
 
   /**
@@ -251,58 +275,368 @@ export namespace OrgCreateParams {
   }
 }
 
-export interface OrgListParams {
-  'Filter using org display name'?: string;
-
-  'Filter using org owner email'?: OrgListParams.FilterUsingOrgOwnerEmail;
-
-  'Filter using org owner name'?: string;
+export interface OrgUpdateParams {
+  /**
+   * Org Owner Alternate Contact
+   */
+  alternateContact?: OrgUpdateParams.AlternateContact;
 
   /**
-   * Org description to search
+   * Name of the company
    */
-  'org-desc'?: string;
+  companyName?: string;
 
   /**
-   * Org name to search
+   * optional description of the organization
    */
-  'org-name'?: string;
+  description?: string;
 
   /**
-   * Org Type to search
+   * Name of the organization that will be shown to users.
    */
-  'org-type'?: 'UNKNOWN' | 'CLOUD' | 'ENTERPRISE' | 'INDIVIDUAL';
+  displayName?: string;
 
   /**
-   * The page number of result
+   * Identity Provider ID.
    */
-  'page-number'?: number;
+  idpId?: string;
 
   /**
-   * The page size of result
+   * Infinity manager setting definition
    */
-  'page-size'?: number;
+  infinityManagerSettings?: OrgUpdateParams.InfinityManagerSettings;
 
   /**
-   * PEC ID to search
+   * Dataset Service enable flag for an organization
    */
-  'pec-id'?: string;
+  isDatasetServiceEnabled?: boolean;
+
+  /**
+   * Is NVIDIA internal org or not
+   */
+  isInternal?: boolean;
+
+  /**
+   * Quick Start enable flag for an organization
+   */
+  isQuickStartEnabled?: boolean;
+
+  /**
+   * If a server side encryption is enabled for private registry (models, resources)
+   */
+  isRegistrySSEEnabled?: boolean;
+
+  /**
+   * Secrets Manager Service enable flag for an organization
+   */
+  isSecretsManagerServiceEnabled?: boolean;
+
+  /**
+   * Secure Credential Sharing Service enable flag for an organization
+   */
+  isSecureCredentialSharingServiceEnabled?: boolean;
+
+  /**
+   * If a separate influx db used for an organization in Base Command Platform job
+   * telemetry
+   */
+  isSeparateInfluxDbUsed?: boolean;
+
+  /**
+   * Org owner.
+   */
+  orgOwner?: OrgUpdateParams.OrgOwner;
+
+  /**
+   * Org owners
+   */
+  orgOwners?: Array<OrgUpdateParams.OrgOwner>;
+
+  /**
+   * product end customer name for enterprise(Fleet Command) product
+   */
+  pecName?: string;
+
+  /**
+   * product end customer salesforce.com Id (external customer Id) for
+   * enterprise(Fleet Command) product
+   */
+  pecSfdcId?: string;
+
+  productEnablements?: Array<OrgUpdateParams.ProductEnablement>;
+
+  productSubscriptions?: Array<OrgUpdateParams.ProductSubscription>;
+
+  /**
+   * Repo scan setting definition
+   */
+  repoScanSettings?: OrgUpdateParams.RepoScanSettings;
+
+  type?: 'UNKNOWN' | 'CLOUD' | 'ENTERPRISE' | 'INDIVIDUAL';
 }
 
-export namespace OrgListParams {
-  export interface FilterUsingOrgOwnerEmail {
-    ' Email should be base-64-encoded'?: string;
+export namespace OrgUpdateParams {
+  /**
+   * Org Owner Alternate Contact
+   */
+  export interface AlternateContact {
+    /**
+     * Alternate contact's email.
+     */
+    email?: string;
+
+    /**
+     * Full name of the alternate contact.
+     */
+    fullName?: string;
+  }
+
+  /**
+   * Infinity manager setting definition
+   */
+  export interface InfinityManagerSettings {
+    /**
+     * Enable the infinity manager or not. Used both in org and team level object
+     */
+    infinityManagerEnabled?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    infinityManagerEnableTeamOverride?: boolean;
+  }
+
+  /**
+   * Org owner.
+   */
+  export interface OrgOwner {
+    /**
+     * Email address of the org owner.
+     */
+    email: string;
+
+    /**
+     * Org owner name.
+     */
+    fullName: string;
+
+    /**
+     * Last time the org owner logged in.
+     */
+    lastLoginDate?: string;
+  }
+
+  /**
+   * Org owner.
+   */
+  export interface OrgOwner {
+    /**
+     * Email address of the org owner.
+     */
+    email: string;
+
+    /**
+     * Org owner name.
+     */
+    fullName: string;
+
+    /**
+     * Last time the org owner logged in.
+     */
+    lastLoginDate?: string;
+  }
+
+  /**
+   * Product Enablement
+   */
+  export interface ProductEnablement {
+    /**
+     * Product Name (NVAIE, BASE_COMMAND, REGISTRY, etc)
+     */
+    productName: string;
+
+    /**
+     * Product Enablement Types
+     */
+    type:
+      | 'NGC_ADMIN_EVAL'
+      | 'NGC_ADMIN_NFR'
+      | 'NGC_ADMIN_COMMERCIAL'
+      | 'EMS_EVAL'
+      | 'EMS_NFR'
+      | 'EMS_COMMERCIAL'
+      | 'NGC_ADMIN_DEVELOPER';
+
+    /**
+     * Date on which the subscription expires. The subscription is invalid after this
+     * date. (yyyy-MM-dd)
+     */
+    expirationDate?: string;
+
+    poDetails?: Array<ProductEnablement.PoDetail>;
+  }
+
+  export namespace ProductEnablement {
+    /**
+     * Purchase Order.
+     */
+    export interface PoDetail {
+      /**
+       * Entitlement identifier.
+       */
+      entitlementId?: string;
+
+      /**
+       * PAK (Product Activation Key) identifier.
+       */
+      pkId?: string;
+    }
+  }
+
+  /**
+   * Product Subscription
+   */
+  export interface ProductSubscription {
+    /**
+     * Product Name (NVAIE, BASE_COMMAND, FleetCommand, REGISTRY, etc).
+     */
+    productName: string;
+
+    /**
+     * Unique entitlement identifier
+     */
+    id?: string;
+
+    /**
+     * EMS Subscription type. (options: EMS_EVAL, EMS_NFR and EMS_COMMERCIAL)
+     */
+    emsEntitlementType?: 'EMS_EVAL' | 'EMS_NFR' | 'EMS_COMMERICAL' | 'EMS_COMMERCIAL';
+
+    /**
+     * Date on which the subscription expires. The subscription is invalid after this
+     * date. (yyyy-MM-dd)
+     */
+    expirationDate?: string;
+
+    /**
+     * Date on which the subscription becomes active. (yyyy-MM-dd)
+     */
+    startDate?: string;
+
+    /**
+     * Subscription type. (options: NGC_ADMIN_EVAL, NGC_ADMIN_NFR,
+     * NGC_ADMIN_COMMERCIAL)
+     */
+    type?: 'NGC_ADMIN_EVAL' | 'NGC_ADMIN_NFR' | 'NGC_ADMIN_COMMERCIAL';
+  }
+
+  /**
+   * Repo scan setting definition
+   */
+  export interface RepoScanSettings {
+    /**
+     * Allow org admin to override the org level repo scan settings
+     */
+    repoScanAllowOverride?: boolean;
+
+    /**
+     * Allow repository scanning by default
+     */
+    repoScanByDefault?: boolean;
+
+    /**
+     * Enable the repository scan or not. Only used in org level object
+     */
+    repoScanEnabled?: boolean;
+
+    /**
+     * Sends notification to end user after scanning is done
+     */
+    repoScanEnableNotifications?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    repoScanEnableTeamOverride?: boolean;
+
+    /**
+     * Allow showing scan results to CLI or UI
+     */
+    repoScanShowResults?: boolean;
+  }
+}
+
+export interface OrgEnableParams {
+  /**
+   * False only if called by SbMS.
+   */
+  createSubscription: boolean;
+
+  /**
+   * Product Enablement
+   */
+  productEnablement: OrgEnableParams.ProductEnablement;
+}
+
+export namespace OrgEnableParams {
+  /**
+   * Product Enablement
+   */
+  export interface ProductEnablement {
+    /**
+     * Product Name (NVAIE, BASE_COMMAND, REGISTRY, etc)
+     */
+    productName: string;
+
+    /**
+     * Product Enablement Types
+     */
+    type:
+      | 'NGC_ADMIN_EVAL'
+      | 'NGC_ADMIN_NFR'
+      | 'NGC_ADMIN_COMMERCIAL'
+      | 'EMS_EVAL'
+      | 'EMS_NFR'
+      | 'EMS_COMMERCIAL'
+      | 'NGC_ADMIN_DEVELOPER';
+
+    /**
+     * Date on which the subscription expires. The subscription is invalid after this
+     * date. (yyyy-MM-dd)
+     */
+    expirationDate?: string;
+
+    poDetails?: Array<ProductEnablement.PoDetail>;
+  }
+
+  export namespace ProductEnablement {
+    /**
+     * Purchase Order.
+     */
+    export interface PoDetail {
+      /**
+       * Entitlement identifier.
+       */
+      entitlementId?: string;
+
+      /**
+       * PAK (Product Activation Key) identifier.
+       */
+      pkId?: string;
+    }
   }
 }
 
 export namespace Orgs {
+  export import OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
   export import OrgCreateParams = OrgsAPI.OrgCreateParams;
-  export import OrgListParams = OrgsAPI.OrgListParams;
-  export import NcaIDs = NcaIDsAPI.NcaIDs;
-  export import NcaIDCreateParams = NcaIDsAPI.NcaIDCreateParams;
-  export import Offboarded = OffboardedAPI.Offboarded;
-  export import OffboardedListParams = OffboardedAPI.OffboardedListParams;
-  export import Teams = TeamsAPI.Teams;
-  export import TeamListParams = TeamsAPI.TeamListParams;
+  export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
+  export import OrgEnableParams = OrgsAPI.OrgEnableParams;
   export import Users = UsersAPI.Users;
+  export import UserRemoveResponse = UsersAPI.UserRemoveResponse;
+  export import UserCreateParams = UsersAPI.UserCreateParams;
+  export import UserAddParams = UsersAPI.UserAddParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export import UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
+  export import Teams = TeamsAPI.Teams;
 }

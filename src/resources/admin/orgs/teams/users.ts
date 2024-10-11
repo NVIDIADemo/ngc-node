@@ -1,23 +1,24 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import { isRequestOptions } from '../../../core';
-import * as Core from '../../../core';
+import { APIResource } from '../../../../resource';
+import { isRequestOptions } from '../../../../core';
+import * as Core from '../../../../core';
 import * as UsersAPI from './users';
-import * as Shared from '../../shared';
-import { type Response } from '../../../_shims/index';
+import * as Shared from '../../../shared';
+import { type Response } from '../../../../_shims/index';
 
 export class Users extends APIResource {
   /**
-   * Create an user in an Organization (Super Admin privileges required)
+   * Create an Org-Admin User (Super Admin privileges required)
    */
   create(
     orgName: string,
+    teamName: string,
     params: UserCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
     const { 'idp-id': idpId, 'send-email': sendEmail, ...body } = params;
-    return this._client.post(`/v2/admin/org/${orgName}/users`, {
+    return this._client.post(`/v2/admin/org/${orgName}/team/${teamName}/users`, {
       query: { 'idp-id': idpId, 'send-email': sendEmail },
       body,
       ...options,
@@ -25,128 +26,95 @@ export class Users extends APIResource {
   }
 
   /**
-   * Add existing User to an Org
+   * Get one team
    */
-  add(
-    orgName: string,
-    id: string,
-    params?: UserAddParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.User>;
-  add(orgName: string, id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.User>;
-  add(
-    orgName: string,
-    id: string,
-    params: UserAddParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.User> {
-    if (isRequestOptions(params)) {
-      return this.add(orgName, id, {}, params);
-    }
-    const { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead } = params;
-    return this._client.post(`/v2/admin/org/${orgName}/users/${id}`, {
-      query: { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead },
-      ...options,
-    });
-  }
-
-  /**
-   * Add user role in org.
-   */
-  addRole(
-    orgName: string,
-    id: string,
-    params?: UserAddRoleParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.User>;
-  addRole(orgName: string, id: string, options?: Core.RequestOptions): Core.APIPromise<Shared.User>;
-  addRole(
-    orgName: string,
-    id: string,
-    params: UserAddRoleParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.User> {
-    if (isRequestOptions(params)) {
-      return this.addRole(orgName, id, {}, params);
-    }
-    const { roles } = params;
-    return this._client.patch(`/v2/admin/org/${orgName}/users/${id}/add-role`, {
-      query: { roles },
-      ...options,
-    });
-  }
-
-  /**
-   * List all organizations with entitlements. (SuperAdmin, ECM and Billing
-   * privileges required)
-   */
-  getEntitlements(
-    orgName: string,
-    query?: UserGetEntitlementsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  getEntitlements(orgName: string, options?: Core.RequestOptions): Core.APIPromise<Response>;
-  getEntitlements(
-    orgName: string,
-    query: UserGetEntitlementsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.getEntitlements(orgName, {}, query);
-    }
-    return this._client.get(`/v2/admin/org/${orgName}/entitlements`, {
-      query,
+  retrieve(orgName: string, teamName: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/v2/admin/org/${orgName}/teams/${teamName}`, {
       ...options,
       __binaryResponse: true,
     });
   }
 
   /**
-   * Remove User from org.
+   * Edit a Team
    */
-  remove(orgName: string, id: string, options?: Core.RequestOptions): Core.APIPromise<UserRemoveResponse> {
-    return this._client.delete(`/v2/admin/org/${orgName}/users/${id}`, options);
+  update(
+    orgName: string,
+    teamName: string,
+    body: UserUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response> {
+    return this._client.patch(`/v2/admin/org/${orgName}/teams/${teamName}`, {
+      body,
+      ...options,
+      __binaryResponse: true,
+    });
   }
-}
 
-export interface UserRemoveResponse {
-  requestStatus?: UserRemoveResponse.RequestStatus;
-}
+  /**
+   * Add existing User to an Team
+   */
+  add(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params?: UserAddParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  add(
+    orgName: string,
+    teamName: string,
+    id: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  add(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params: UserAddParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User> {
+    if (isRequestOptions(params)) {
+      return this.add(orgName, teamName, id, {}, params);
+    }
+    const { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead } = params;
+    return this._client.post(`/v2/admin/org/${orgName}/team/${teamName}/users/${id}`, {
+      query: { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead },
+      ...options,
+    });
+  }
 
-export namespace UserRemoveResponse {
-  export interface RequestStatus {
-    requestId?: string;
-
-    serverId?: string;
-
-    /**
-     * Describes response status reported by the server.
-     */
-    statusCode?:
-      | 'UNKNOWN'
-      | 'SUCCESS'
-      | 'UNAUTHORIZED'
-      | 'PAYMENT_REQUIRED'
-      | 'FORBIDDEN'
-      | 'TIMEOUT'
-      | 'EXISTS'
-      | 'NOT_FOUND'
-      | 'INTERNAL_ERROR'
-      | 'INVALID_REQUEST'
-      | 'INVALID_REQUEST_VERSION'
-      | 'INVALID_REQUEST_DATA'
-      | 'METHOD_NOT_ALLOWED'
-      | 'CONFLICT'
-      | 'UNPROCESSABLE_ENTITY'
-      | 'TOO_MANY_REQUESTS'
-      | 'INSUFFICIENT_STORAGE'
-      | 'SERVICE_UNAVAILABLE'
-      | 'PAYLOAD_TOO_LARGE'
-      | 'NOT_ACCEPTABLE'
-      | 'UNAVAILABLE_FOR_LEGAL_REASONS'
-      | 'BAD_GATEWAY';
-
-    statusDescription?: string;
+  /**
+   * Add user role in team.
+   */
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params?: UserAddRoleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User>;
+  addRole(
+    orgName: string,
+    teamName: string,
+    id: string,
+    params: UserAddRoleParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Shared.User> {
+    if (isRequestOptions(params)) {
+      return this.addRole(orgName, teamName, id, {}, params);
+    }
+    const { roles } = params;
+    return this._client.patch(`/v2/admin/org/${orgName}/team/${teamName}/users/${id}/add-role`, {
+      query: { roles },
+      ...options,
+    });
   }
 }
 
@@ -250,6 +218,75 @@ export namespace UserCreateParams {
   }
 }
 
+export interface UserUpdateParams {
+  /**
+   * description of the team
+   */
+  description?: string;
+
+  /**
+   * Infinity manager setting definition
+   */
+  infinityManagerSettings?: UserUpdateParams.InfinityManagerSettings;
+
+  /**
+   * Repo scan setting definition
+   */
+  repoScanSettings?: UserUpdateParams.RepoScanSettings;
+}
+
+export namespace UserUpdateParams {
+  /**
+   * Infinity manager setting definition
+   */
+  export interface InfinityManagerSettings {
+    /**
+     * Enable the infinity manager or not. Used both in org and team level object
+     */
+    infinityManagerEnabled?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    infinityManagerEnableTeamOverride?: boolean;
+  }
+
+  /**
+   * Repo scan setting definition
+   */
+  export interface RepoScanSettings {
+    /**
+     * Allow org admin to override the org level repo scan settings
+     */
+    repoScanAllowOverride?: boolean;
+
+    /**
+     * Allow repository scanning by default
+     */
+    repoScanByDefault?: boolean;
+
+    /**
+     * Enable the repository scan or not. Only used in org level object
+     */
+    repoScanEnabled?: boolean;
+
+    /**
+     * Sends notification to end user after scanning is done
+     */
+    repoScanEnableNotifications?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    repoScanEnableTeamOverride?: boolean;
+
+    /**
+     * Allow showing scan results to CLI or UI
+     */
+    repoScanShowResults?: boolean;
+  }
+}
+
 export interface UserAddParams {
   'user role, defaults to REGISTRY_READ'?: string;
 }
@@ -258,22 +295,9 @@ export interface UserAddRoleParams {
   roles?: Array<string>;
 }
 
-export interface UserGetEntitlementsParams {
-  /**
-   * get is paid subscription entitlements
-   */
-  'is-paid-subscription'?: boolean;
-
-  /**
-   * filter by product-name
-   */
-  'product-name'?: string;
-}
-
 export namespace Users {
-  export import UserRemoveResponse = UsersAPI.UserRemoveResponse;
   export import UserCreateParams = UsersAPI.UserCreateParams;
+  export import UserUpdateParams = UsersAPI.UserUpdateParams;
   export import UserAddParams = UsersAPI.UserAddParams;
   export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export import UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
 }

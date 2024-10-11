@@ -9,8 +9,8 @@ const client = new Ngc({
 });
 
 describe('resource users', () => {
-  test('retrieve', async () => {
-    const responsePromise = client.admin.users.retrieve('id');
+  test('crmSync', async () => {
+    const responsePromise = client.admin.users.crmSync(0);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,15 +20,15 @@ describe('resource users', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
+  test('crmSync: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.users.retrieve('id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.admin.users.crmSync(0, { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Ngc.NotFoundError,
     );
   });
 
-  test('invite: only required params', async () => {
-    const responsePromise = client.admin.users.invite({ email: 'email' });
+  test('migrateDeprecatedRoles', async () => {
+    const responsePromise = client.admin.users.migrateDeprecatedRoles('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,50 +38,10 @@ describe('resource users', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('invite: required and optional params', async () => {
-    const response = await client.admin.users.invite({ email: 'email', 'send-email': true });
-  });
-
-  test('me', async () => {
-    const responsePromise = client.admin.users.me();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('me: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.users.me({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Ngc.NotFoundError,
-    );
-  });
-
-  test('me: request options and params are passed correctly', async () => {
+  test('migrateDeprecatedRoles: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.admin.users.me({ 'org-name': 'org-name' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Ngc.NotFoundError);
-  });
-
-  test('orgOwnerBackfill', async () => {
-    const responsePromise = client.admin.users.orgOwnerBackfill(0);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('orgOwnerBackfill: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.users.orgOwnerBackfill(0, { path: '/_stainless_unknown_path' }),
+      client.admin.users.migrateDeprecatedRoles('id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Ngc.NotFoundError);
   });
 });
