@@ -128,7 +128,6 @@ export class Ngc extends Core.APIClient {
   superAdminOrg: API.SuperAdminOrg = new API.SuperAdminOrg(this);
   superAdminOrgControllers: API.SuperAdminOrgControllers = new API.SuperAdminOrgControllers(this);
   usersManagement: API.UsersManagement = new API.UsersManagement(this);
-  org: API.Org = new API.Org(this);
   v2AdminOrgUsers: API.V2AdminOrgUsers = new API.V2AdminOrgUsers(this);
   v2AdminOrgTeams: API.V2AdminOrgTeams = new API.V2AdminOrgTeams(this);
   v2AdminOrgTeamUsers: API.V2AdminOrgTeamUsers = new API.V2AdminOrgTeamUsers(this);
@@ -243,8 +242,6 @@ export namespace Ngc {
   export import SuperAdminOrgControllers = API.SuperAdminOrgControllers;
 
   export import UsersManagement = API.UsersManagement;
-
-  export import Org = API.Org;
 
   export import V2AdminOrgUsers = API.V2AdminOrgUsers;
   export import V2AdminOrgUserAddRoleParams = API.V2AdminOrgUserAddRoleParams;
