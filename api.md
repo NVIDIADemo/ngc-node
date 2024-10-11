@@ -139,38 +139,42 @@ Methods:
 
 - <code title="post /v2/users/me/api-key">client.users.v2.apiKey.<a href="./src/resources/users/v2/api-key.ts">create</a>() -> UserKeyResponse</code>
 
-# SuperAdminUser
+# Admin
 
-Types:
-
-- <code><a href="./src/resources/super-admin-user/super-admin-user.ts">SuperAdminUserCRMSyncResponse</a></code>
+## Entitlements
 
 Methods:
 
-- <code title="post /v2/admin/users/{id}/crm-sync">client.superAdminUser.<a href="./src/resources/super-admin-user/super-admin-user.ts">crmSync</a>(id) -> SuperAdminUserCRMSyncResponse</code>
-- <code title="post /v2/admin/users/{id}/migrate-deprecated-roles">client.superAdminUser.<a href="./src/resources/super-admin-user/super-admin-user.ts">migrateDeprecatedRoles</a>(id) -> User</code>
+- <code title="get /v2/admin/entitlements">client.admin.entitlements.<a href="./src/resources/admin/entitlements.ts">retrieveAll</a>({ ...params }) -> Response</code>
 
 ## Orgs
 
 Types:
 
-- <code><a href="./src/resources/super-admin-user/orgs/orgs.ts">OrgOrgOwnerBackfillResponse</a></code>
+- <code><a href="./src/resources/admin/orgs/orgs.ts">OrgOrgOwnerBackfillResponse</a></code>
 
 Methods:
 
-- <code title="post /v2/admin/org/{org-name}/org-owner-backfill">client.superAdminUser.orgs.<a href="./src/resources/super-admin-user/orgs/orgs.ts">orgOwnerBackfill</a>(orgName) -> OrgOrgOwnerBackfillResponse</code>
+- <code title="post /v2/admin/orgs">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">create</a>({ ...params }) -> Response</code>
+- <code title="get /v3/admin/org/{org-name}">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">retrieve</a>(orgName) -> Response</code>
+- <code title="patch /v3/admin/org/{org-name}">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">update</a>(orgName, { ...params }) -> Response</code>
+- <code title="post /v2/admin/backfill-orgs-to-kratos">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">backfillOrgsToKratos</a>() -> Response</code>
+- <code title="post /v2/admin/org/{org-name}/enablement">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">enable</a>(orgName, { ...params }) -> Response</code>
+- <code title="post /v2/admin/org/{org-name}/org-owner-backfill">client.admin.orgs.<a href="./src/resources/admin/orgs/orgs.ts">orgOwnerBackfill</a>(orgName) -> OrgOrgOwnerBackfillResponse</code>
 
 ### Users
 
 Types:
 
-- <code><a href="./src/resources/super-admin-user/orgs/users.ts">UserRemoveResponse</a></code>
+- <code><a href="./src/resources/admin/orgs/users.ts">UserRemoveResponse</a></code>
 
 Methods:
 
-- <code title="post /v2/admin/org/{org-name}/users">client.superAdminUser.orgs.users.<a href="./src/resources/super-admin-user/orgs/users.ts">create</a>(orgName, { ...params }) -> User</code>
-- <code title="post /v2/admin/org/{org-name}/users/{id}">client.superAdminUser.orgs.users.<a href="./src/resources/super-admin-user/orgs/users.ts">add</a>(orgName, id, { ...params }) -> User</code>
-- <code title="delete /v2/admin/org/{org-name}/users/{id}">client.superAdminUser.orgs.users.<a href="./src/resources/super-admin-user/orgs/users.ts">remove</a>(orgName, id) -> UserRemoveResponse</code>
+- <code title="post /v2/admin/org/{org-name}/users">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">create</a>(orgName, { ...params }) -> User</code>
+- <code title="post /v2/admin/org/{org-name}/users/{id}">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">add</a>(orgName, id, { ...params }) -> User</code>
+- <code title="patch /v2/admin/org/{org-name}/users/{id}/add-role">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">addRole</a>(orgName, id, { ...params }) -> User</code>
+- <code title="get /v2/admin/org/{org-name}/entitlements">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">getEntitlements</a>(orgName, { ...params }) -> Response</code>
+- <code title="delete /v2/admin/org/{org-name}/users/{id}">client.admin.orgs.users.<a href="./src/resources/admin/orgs/users.ts">remove</a>(orgName, id) -> UserRemoveResponse</code>
 
 ### Teams
 
@@ -178,33 +182,22 @@ Methods:
 
 Methods:
 
-- <code title="post /v2/admin/org/{org-name}/team/{team-name}/users">client.superAdminUser.orgs.teams.users.<a href="./src/resources/super-admin-user/orgs/teams/users.ts">create</a>(orgName, teamName, { ...params }) -> User</code>
-- <code title="post /v2/admin/org/{org-name}/team/{team-name}/users/{id}">client.superAdminUser.orgs.teams.users.<a href="./src/resources/super-admin-user/orgs/teams/users.ts">add</a>(orgName, teamName, id, { ...params }) -> User</code>
+- <code title="post /v2/admin/org/{org-name}/team/{team-name}/users">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">create</a>(orgName, teamName, { ...params }) -> User</code>
+- <code title="get /v2/admin/org/{org-name}/teams/{team-name}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">retrieve</a>(orgName, teamName) -> Response</code>
+- <code title="patch /v2/admin/org/{org-name}/teams/{team-name}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">update</a>(orgName, teamName, { ...params }) -> Response</code>
+- <code title="post /v2/admin/org/{org-name}/team/{team-name}/users/{id}">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">add</a>(orgName, teamName, id, { ...params }) -> User</code>
+- <code title="patch /v2/admin/org/{org-name}/team/{team-name}/users/{id}/add-role">client.admin.orgs.teams.users.<a href="./src/resources/admin/orgs/teams/users.ts">addRole</a>(orgName, teamName, id, { ...params }) -> User</code>
 
-# SuperAdminOrg
+## Users
 
-Methods:
+Types:
 
-- <code title="post /v2/admin/orgs">client.superAdminOrg.<a href="./src/resources/super-admin-org/super-admin-org.ts">create</a>({ ...params }) -> Response</code>
-
-## OrgStatus
-
-Methods:
-
-- <code title="post /v2/admin/org/{org-name}/enablement">client.superAdminOrg.orgStatus.<a href="./src/resources/super-admin-org/org-status.ts">create</a>(orgName, { ...params }) -> Response</code>
-
-# SuperAdminOrgControllers
+- <code><a href="./src/resources/admin/users.ts">UserCRMSyncResponse</a></code>
 
 Methods:
 
-- <code title="post /v2/admin/backfill-orgs-to-kratos">client.superAdminOrgControllers.<a href="./src/resources/super-admin-org-controllers/super-admin-org-controllers.ts">backfillOrgsToKratos</a>() -> Response</code>
-
-## Org
-
-Methods:
-
-- <code title="get /v3/admin/org/{org-name}">client.superAdminOrgControllers.org.<a href="./src/resources/super-admin-org-controllers/org.ts">retrieve</a>(orgName) -> Response</code>
-- <code title="patch /v3/admin/org/{org-name}">client.superAdminOrgControllers.org.<a href="./src/resources/super-admin-org-controllers/org.ts">update</a>(orgName, { ...params }) -> Response</code>
+- <code title="post /v2/admin/users/{id}/crm-sync">client.admin.users.<a href="./src/resources/admin/users.ts">crmSync</a>(id) -> UserCRMSyncResponse</code>
+- <code title="post /v2/admin/users/{id}/migrate-deprecated-roles">client.admin.users.<a href="./src/resources/admin/users.ts">migrateDeprecatedRoles</a>(id) -> User</code>
 
 # UsersManagement
 
@@ -214,37 +207,6 @@ Methods:
 
 - <code title="get /v2/users/me">client.usersManagement.me.<a href="./src/resources/users-management/me.ts">retrieve</a>({ ...params }) -> User</code>
 - <code title="patch /v2/users/me">client.usersManagement.me.<a href="./src/resources/users-management/me.ts">update</a>({ ...params }) -> User</code>
-
-# V2AdminOrgUsers
-
-Methods:
-
-- <code title="patch /v2/admin/org/{org-name}/users/{id}/add-role">client.v2AdminOrgUsers.<a href="./src/resources/v2-admin-org-users.ts">addRole</a>(orgName, id, { ...params }) -> User</code>
-
-# V2AdminOrgTeams
-
-Methods:
-
-- <code title="get /v2/admin/org/{org-name}/teams/{team-name}">client.v2AdminOrgTeams.<a href="./src/resources/v2-admin-org-teams.ts">retrieve</a>(orgName, teamName) -> Response</code>
-- <code title="patch /v2/admin/org/{org-name}/teams/{team-name}">client.v2AdminOrgTeams.<a href="./src/resources/v2-admin-org-teams.ts">update</a>(orgName, teamName, { ...params }) -> Response</code>
-
-# V2AdminOrgTeamUsers
-
-Methods:
-
-- <code title="patch /v2/admin/org/{org-name}/team/{team-name}/users/{id}/add-role">client.v2AdminOrgTeamUsers.<a href="./src/resources/v2-admin-org-team-users.ts">addRole</a>(orgName, teamName, id, { ...params }) -> User</code>
-
-# V2AdminOrgEntitlements
-
-Methods:
-
-- <code title="get /v2/admin/org/{org-name}/entitlements">client.v2AdminOrgEntitlements.<a href="./src/resources/v2-admin-org-entitlements.ts">retrieveAll</a>(orgName, { ...params }) -> Response</code>
-
-# V2AdminEntitlements
-
-Methods:
-
-- <code title="get /v2/admin/entitlements">client.v2AdminEntitlements.<a href="./src/resources/v2-admin-entitlements.ts">retrieveAll</a>({ ...params }) -> Response</code>
 
 # Services
 

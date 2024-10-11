@@ -123,15 +123,8 @@ export class Ngc extends Core.APIClient {
 
   orgs: API.Orgs = new API.Orgs(this);
   users: API.Users = new API.Users(this);
-  superAdminUser: API.SuperAdminUser = new API.SuperAdminUser(this);
-  superAdminOrg: API.SuperAdminOrg = new API.SuperAdminOrg(this);
-  superAdminOrgControllers: API.SuperAdminOrgControllers = new API.SuperAdminOrgControllers(this);
+  admin: API.Admin = new API.Admin(this);
   usersManagement: API.UsersManagement = new API.UsersManagement(this);
-  v2AdminOrgUsers: API.V2AdminOrgUsers = new API.V2AdminOrgUsers(this);
-  v2AdminOrgTeams: API.V2AdminOrgTeams = new API.V2AdminOrgTeams(this);
-  v2AdminOrgTeamUsers: API.V2AdminOrgTeamUsers = new API.V2AdminOrgTeamUsers(this);
-  v2AdminOrgEntitlements: API.V2AdminOrgEntitlements = new API.V2AdminOrgEntitlements(this);
-  v2AdminEntitlements: API.V2AdminEntitlements = new API.V2AdminEntitlements(this);
   services: API.Services = new API.Services(this);
   v3OrgsUsers: API.V3OrgsUsers = new API.V3OrgsUsers(this);
   v3OrgsTeamsUsers: API.V3OrgsTeamsUsers = new API.V3OrgsTeamsUsers(this);
@@ -230,30 +223,9 @@ export namespace Ngc {
 
   export import Users = API.Users;
 
-  export import SuperAdminUser = API.SuperAdminUser;
-  export import SuperAdminUserCRMSyncResponse = API.SuperAdminUserCRMSyncResponse;
-
-  export import SuperAdminOrg = API.SuperAdminOrg;
-  export import SuperAdminOrgCreateParams = API.SuperAdminOrgCreateParams;
-
-  export import SuperAdminOrgControllers = API.SuperAdminOrgControllers;
+  export import Admin = API.Admin;
 
   export import UsersManagement = API.UsersManagement;
-
-  export import V2AdminOrgUsers = API.V2AdminOrgUsers;
-  export import V2AdminOrgUserAddRoleParams = API.V2AdminOrgUserAddRoleParams;
-
-  export import V2AdminOrgTeams = API.V2AdminOrgTeams;
-  export import V2AdminOrgTeamUpdateParams = API.V2AdminOrgTeamUpdateParams;
-
-  export import V2AdminOrgTeamUsers = API.V2AdminOrgTeamUsers;
-  export import V2AdminOrgTeamUserAddRoleParams = API.V2AdminOrgTeamUserAddRoleParams;
-
-  export import V2AdminOrgEntitlements = API.V2AdminOrgEntitlements;
-  export import V2AdminOrgEntitlementRetrieveAllParams = API.V2AdminOrgEntitlementRetrieveAllParams;
-
-  export import V2AdminEntitlements = API.V2AdminEntitlements;
-  export import V2AdminEntitlementRetrieveAllParams = API.V2AdminEntitlementRetrieveAllParams;
 
   export import Services = API.Services;
   export import ServiceVersionResponse = API.ServiceVersionResponse;
