@@ -15,7 +15,7 @@ export class Users extends APIResource {
     params: UserCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.User> {
-    const { 'idp-id': idpId, 'send-email': sendEmail, ncid, VisitorID, ...body } = params;
+    const { 'idp-id': idpId, 'send-email': sendEmail, ...body } = params;
     return this._client.post(`/v2/admin/org/${orgName}/users`, {
       query: { 'idp-id': idpId, 'send-email': sendEmail },
       body,
@@ -42,11 +42,7 @@ export class Users extends APIResource {
     if (isRequestOptions(params)) {
       return this.add(orgName, id, {}, params);
     }
-    const {
-      'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead,
-      ncid,
-      VisitorID,
-    } = params;
+    const { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead } = params;
     return this._client.post(`/v2/admin/org/${orgName}/users/${id}`, {
       query: { 'user role, defaults to REGISTRY_READ': userRoleDefaultsToRegistryRead },
       ...options,
@@ -153,16 +149,6 @@ export interface UserCreateParams {
    * Body param: Metadata information about the user.
    */
   userMetadata?: UserCreateParams.UserMetadata;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace UserCreateParams {
@@ -213,20 +199,7 @@ export namespace UserCreateParams {
 }
 
 export interface UserAddParams {
-  /**
-   * Query param:
-   */
   'user role, defaults to REGISTRY_READ'?: string;
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace Users {

@@ -12,93 +12,76 @@ export class SuperAdminOrg extends APIResource {
   /**
    * Create a new organization. (SuperAdmin privileges required)
    */
-  create(params: SuperAdminOrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    const { ncid, VisitorID, ...body } = params;
+  create(body: SuperAdminOrgCreateParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
     return this._client.post('/v2/admin/orgs', { body, ...options, __binaryResponse: true });
   }
 }
 
 export interface SuperAdminOrgCreateParams {
   /**
-   * Body param: Org owner.
+   * Org owner.
    */
   orgOwner: SuperAdminOrgCreateParams.OrgOwner;
 
   /**
-   * Body param: user country
+   * user country
    */
   country?: string;
 
   /**
-   * Body param: optional description of the organization
+   * optional description of the organization
    */
   description?: string;
 
   /**
-   * Body param: Name of the organization that will be shown to users.
+   * Name of the organization that will be shown to users.
    */
   displayName?: string;
 
   /**
-   * Body param: Identity Provider ID.
+   * Identity Provider ID.
    */
   idpId?: string;
 
   /**
-   * Body param: Is NVIDIA internal org or not
+   * Is NVIDIA internal org or not
    */
   isInternal?: boolean;
 
   /**
-   * Body param: Organization name
+   * Organization name
    */
   name?: string;
 
   /**
-   * Body param: product end customer name for enterprise(Fleet Command) product
+   * product end customer name for enterprise(Fleet Command) product
    */
   pecName?: string;
 
   /**
-   * Body param: product end customer salesforce.com Id (external customer Id) for
+   * product end customer salesforce.com Id (external customer Id) for
    * enterprise(Fleet Command) product
    */
   pecSfdcId?: string;
 
-  /**
-   * Body param:
-   */
   productEnablements?: Array<SuperAdminOrgCreateParams.ProductEnablement>;
 
   /**
-   * Body param: This should be deprecated, use productEnablements instead
+   * This should be deprecated, use productEnablements instead
    */
   productSubscriptions?: Array<SuperAdminOrgCreateParams.ProductSubscription>;
 
   /**
-   * Body param: Company or organization industry
+   * Company or organization industry
    */
   salesforceAccountIndustry?: string;
 
   /**
-   * Body param: Send email to org owner or not. Default is true
+   * Send email to org owner or not. Default is true
    */
   sendEmail?: boolean;
 
-  /**
-   * Body param:
-   */
   type?: 'UNKNOWN' | 'CLOUD' | 'ENTERPRISE' | 'INDIVIDUAL';
-
-  /**
-   * Cookie param:
-   */
-  ncid?: string;
-
-  /**
-   * Cookie param:
-   */
-  VisitorID?: string;
 }
 
 export namespace SuperAdminOrgCreateParams {
