@@ -1,5 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import * as Shared from './shared';
+import { PageNumberTeams } from '../pagination';
+
 /**
  * This API is invoked by monitoring tools, other services and infrastructure to
  * retrieve health status the targeted service, this is unprotected method
@@ -186,6 +189,93 @@ export namespace MeteringResultList {
 }
 
 /**
+ * Information about the team
+ */
+export interface Team {
+  /**
+   * unique Id of this team.
+   */
+  id?: number;
+
+  /**
+   * description of the team
+   */
+  description?: string;
+
+  /**
+   * Infinity manager setting definition
+   */
+  infinityManagerSettings?: Team.InfinityManagerSettings;
+
+  /**
+   * indicates if the team is deleted or not
+   */
+  isDeleted?: boolean;
+
+  /**
+   * team name
+   */
+  name?: string;
+
+  /**
+   * Repo scan setting definition
+   */
+  repoScanSettings?: Team.RepoScanSettings;
+}
+
+export namespace Team {
+  /**
+   * Infinity manager setting definition
+   */
+  export interface InfinityManagerSettings {
+    /**
+     * Enable the infinity manager or not. Used both in org and team level object
+     */
+    infinityManagerEnabled?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    infinityManagerEnableTeamOverride?: boolean;
+  }
+
+  /**
+   * Repo scan setting definition
+   */
+  export interface RepoScanSettings {
+    /**
+     * Allow org admin to override the org level repo scan settings
+     */
+    repoScanAllowOverride?: boolean;
+
+    /**
+     * Allow repository scanning by default
+     */
+    repoScanByDefault?: boolean;
+
+    /**
+     * Enable the repository scan or not. Only used in org level object
+     */
+    repoScanEnabled?: boolean;
+
+    /**
+     * Sends notification to end user after scanning is done
+     */
+    repoScanEnableNotifications?: boolean;
+
+    /**
+     * Allow override settings at team level. Only used in org level object
+     */
+    repoScanEnableTeamOverride?: boolean;
+
+    /**
+     * Allow showing scan results to CLI or UI
+     */
+    repoScanShowResults?: boolean;
+  }
+}
+
+/**
  * listing of all teams
  */
 export interface TeamList {
@@ -196,7 +286,7 @@ export interface TeamList {
 
   requestStatus?: TeamList.RequestStatus;
 
-  teams?: Array<TeamList.Team>;
+  teams?: Array<Team>;
 }
 
 export namespace TeamList {
@@ -264,93 +354,6 @@ export namespace TeamList {
       | 'BAD_GATEWAY';
 
     statusDescription?: string;
-  }
-
-  /**
-   * Information about the team
-   */
-  export interface Team {
-    /**
-     * unique Id of this team.
-     */
-    id?: number;
-
-    /**
-     * description of the team
-     */
-    description?: string;
-
-    /**
-     * Infinity manager setting definition
-     */
-    infinityManagerSettings?: Team.InfinityManagerSettings;
-
-    /**
-     * indicates if the team is deleted or not
-     */
-    isDeleted?: boolean;
-
-    /**
-     * team name
-     */
-    name?: string;
-
-    /**
-     * Repo scan setting definition
-     */
-    repoScanSettings?: Team.RepoScanSettings;
-  }
-
-  export namespace Team {
-    /**
-     * Infinity manager setting definition
-     */
-    export interface InfinityManagerSettings {
-      /**
-       * Enable the infinity manager or not. Used both in org and team level object
-       */
-      infinityManagerEnabled?: boolean;
-
-      /**
-       * Allow override settings at team level. Only used in org level object
-       */
-      infinityManagerEnableTeamOverride?: boolean;
-    }
-
-    /**
-     * Repo scan setting definition
-     */
-    export interface RepoScanSettings {
-      /**
-       * Allow org admin to override the org level repo scan settings
-       */
-      repoScanAllowOverride?: boolean;
-
-      /**
-       * Allow repository scanning by default
-       */
-      repoScanByDefault?: boolean;
-
-      /**
-       * Enable the repository scan or not. Only used in org level object
-       */
-      repoScanEnabled?: boolean;
-
-      /**
-       * Sends notification to end user after scanning is done
-       */
-      repoScanEnableNotifications?: boolean;
-
-      /**
-       * Allow override settings at team level. Only used in org level object
-       */
-      repoScanEnableTeamOverride?: boolean;
-
-      /**
-       * Allow showing scan results to CLI or UI
-       */
-      repoScanShowResults?: boolean;
-    }
   }
 }
 
@@ -636,7 +639,7 @@ export namespace User {
       /**
        * Information about the team
        */
-      team?: Role.Team;
+      team?: Shared.Team;
 
       /**
        * List of team role types that the user have
@@ -1017,93 +1020,6 @@ export namespace User {
          */
         userId?: number;
       }
-
-      /**
-       * Information about the team
-       */
-      export interface Team {
-        /**
-         * unique Id of this team.
-         */
-        id?: number;
-
-        /**
-         * description of the team
-         */
-        description?: string;
-
-        /**
-         * Infinity manager setting definition
-         */
-        infinityManagerSettings?: Team.InfinityManagerSettings;
-
-        /**
-         * indicates if the team is deleted or not
-         */
-        isDeleted?: boolean;
-
-        /**
-         * team name
-         */
-        name?: string;
-
-        /**
-         * Repo scan setting definition
-         */
-        repoScanSettings?: Team.RepoScanSettings;
-      }
-
-      export namespace Team {
-        /**
-         * Infinity manager setting definition
-         */
-        export interface InfinityManagerSettings {
-          /**
-           * Enable the infinity manager or not. Used both in org and team level object
-           */
-          infinityManagerEnabled?: boolean;
-
-          /**
-           * Allow override settings at team level. Only used in org level object
-           */
-          infinityManagerEnableTeamOverride?: boolean;
-        }
-
-        /**
-         * Repo scan setting definition
-         */
-        export interface RepoScanSettings {
-          /**
-           * Allow org admin to override the org level repo scan settings
-           */
-          repoScanAllowOverride?: boolean;
-
-          /**
-           * Allow repository scanning by default
-           */
-          repoScanByDefault?: boolean;
-
-          /**
-           * Enable the repository scan or not. Only used in org level object
-           */
-          repoScanEnabled?: boolean;
-
-          /**
-           * Sends notification to end user after scanning is done
-           */
-          repoScanEnableNotifications?: boolean;
-
-          /**
-           * Allow override settings at team level. Only used in org level object
-           */
-          repoScanEnableTeamOverride?: boolean;
-
-          /**
-           * Allow showing scan results to CLI or UI
-           */
-          repoScanShowResults?: boolean;
-        }
-      }
     }
 
     /**
@@ -1254,7 +1170,7 @@ export namespace User {
     /**
      * Information about the team
      */
-    team?: UserRole.Team;
+    team?: Shared.Team;
 
     /**
      * List of team role types that the user have
@@ -1634,93 +1550,6 @@ export namespace User {
        * Unique ID of the user who submitted the job
        */
       userId?: number;
-    }
-
-    /**
-     * Information about the team
-     */
-    export interface Team {
-      /**
-       * unique Id of this team.
-       */
-      id?: number;
-
-      /**
-       * description of the team
-       */
-      description?: string;
-
-      /**
-       * Infinity manager setting definition
-       */
-      infinityManagerSettings?: Team.InfinityManagerSettings;
-
-      /**
-       * indicates if the team is deleted or not
-       */
-      isDeleted?: boolean;
-
-      /**
-       * team name
-       */
-      name?: string;
-
-      /**
-       * Repo scan setting definition
-       */
-      repoScanSettings?: Team.RepoScanSettings;
-    }
-
-    export namespace Team {
-      /**
-       * Infinity manager setting definition
-       */
-      export interface InfinityManagerSettings {
-        /**
-         * Enable the infinity manager or not. Used both in org and team level object
-         */
-        infinityManagerEnabled?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        infinityManagerEnableTeamOverride?: boolean;
-      }
-
-      /**
-       * Repo scan setting definition
-       */
-      export interface RepoScanSettings {
-        /**
-         * Allow org admin to override the org level repo scan settings
-         */
-        repoScanAllowOverride?: boolean;
-
-        /**
-         * Allow repository scanning by default
-         */
-        repoScanByDefault?: boolean;
-
-        /**
-         * Enable the repository scan or not. Only used in org level object
-         */
-        repoScanEnabled?: boolean;
-
-        /**
-         * Sends notification to end user after scanning is done
-         */
-        repoScanEnableNotifications?: boolean;
-
-        /**
-         * Allow override settings at team level. Only used in org level object
-         */
-        repoScanEnableTeamOverride?: boolean;
-
-        /**
-         * Allow showing scan results to CLI or UI
-         */
-        repoScanShowResults?: boolean;
-      }
     }
   }
 }
@@ -2164,7 +1993,7 @@ export namespace UserList {
       /**
        * Information about the team
        */
-      team?: Role.Team;
+      team?: Shared.Team;
 
       /**
        * List of team role types that the user have
@@ -2545,93 +2374,6 @@ export namespace UserList {
          */
         userId?: number;
       }
-
-      /**
-       * Information about the team
-       */
-      export interface Team {
-        /**
-         * unique Id of this team.
-         */
-        id?: number;
-
-        /**
-         * description of the team
-         */
-        description?: string;
-
-        /**
-         * Infinity manager setting definition
-         */
-        infinityManagerSettings?: Team.InfinityManagerSettings;
-
-        /**
-         * indicates if the team is deleted or not
-         */
-        isDeleted?: boolean;
-
-        /**
-         * team name
-         */
-        name?: string;
-
-        /**
-         * Repo scan setting definition
-         */
-        repoScanSettings?: Team.RepoScanSettings;
-      }
-
-      export namespace Team {
-        /**
-         * Infinity manager setting definition
-         */
-        export interface InfinityManagerSettings {
-          /**
-           * Enable the infinity manager or not. Used both in org and team level object
-           */
-          infinityManagerEnabled?: boolean;
-
-          /**
-           * Allow override settings at team level. Only used in org level object
-           */
-          infinityManagerEnableTeamOverride?: boolean;
-        }
-
-        /**
-         * Repo scan setting definition
-         */
-        export interface RepoScanSettings {
-          /**
-           * Allow org admin to override the org level repo scan settings
-           */
-          repoScanAllowOverride?: boolean;
-
-          /**
-           * Allow repository scanning by default
-           */
-          repoScanByDefault?: boolean;
-
-          /**
-           * Enable the repository scan or not. Only used in org level object
-           */
-          repoScanEnabled?: boolean;
-
-          /**
-           * Sends notification to end user after scanning is done
-           */
-          repoScanEnableNotifications?: boolean;
-
-          /**
-           * Allow override settings at team level. Only used in org level object
-           */
-          repoScanEnableTeamOverride?: boolean;
-
-          /**
-           * Allow showing scan results to CLI or UI
-           */
-          repoScanShowResults?: boolean;
-        }
-      }
     }
 
     /**
@@ -2755,3 +2497,5 @@ export namespace UserList {
     }
   }
 }
+
+export class TeamsPageNumberTeams extends PageNumberTeams<Team> {}

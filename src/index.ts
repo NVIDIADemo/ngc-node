@@ -122,13 +122,10 @@ export class Ngc extends Core.APIClient {
   }
 
   orgs: API.Orgs = new API.Orgs(this);
-  users: API.Users = new API.Users(this);
+  me: API.Me = new API.Me(this);
   admin: API.Admin = new API.Admin(this);
   usersManagement: API.UsersManagement = new API.UsersManagement(this);
   services: API.Services = new API.Services(this);
-  v3OrgsUsers: API.V3OrgsUsers = new API.V3OrgsUsers(this);
-  v3OrgsTeamsUsers: API.V3OrgsTeamsUsers = new API.V3OrgsTeamsUsers(this);
-  v3Orgs: API.V3Orgs = new API.V3Orgs(this);
   roles: API.Roles = new API.Roles(this);
   publicKeys: API.PublicKeys = new API.PublicKeys(this);
   health: API.Health = new API.Health(this);
@@ -221,7 +218,7 @@ export namespace Ngc {
   export import OrgUpdateParams = API.OrgUpdateParams;
   export import OrgListParams = API.OrgListParams;
 
-  export import Users = API.Users;
+  export import Me = API.Me;
 
   export import Admin = API.Admin;
 
@@ -230,14 +227,6 @@ export namespace Ngc {
   export import Services = API.Services;
   export import ServiceVersionResponse = API.ServiceVersionResponse;
   export import ServiceVersionParams = API.ServiceVersionParams;
-
-  export import V3OrgsUsers = API.V3OrgsUsers;
-
-  export import V3OrgsTeamsUsers = API.V3OrgsTeamsUsers;
-
-  export import V3Orgs = API.V3Orgs;
-  export import OrgInvitation = API.OrgInvitation;
-  export import V3OrgValidateParams = API.V3OrgValidateParams;
 
   export import Roles = API.Roles;
   export import UserRoleDefinitions = API.UserRoleDefinitions;
@@ -252,6 +241,7 @@ export namespace Ngc {
 
   export import Health = API.Health;
   export import MeteringResultList = API.MeteringResultList;
+  export import Team = API.Team;
   export import TeamList = API.TeamList;
   export import User = API.User;
   export import UserInvitationList = API.UserInvitationList;
