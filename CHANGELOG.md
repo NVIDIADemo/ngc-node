@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 (2024-10-24)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/NVIDIADemo/ngc-node/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** api update ([#12](https://github.com/NVIDIADemo/ngc-node/issues/12)) ([eb5c6b5](https://github.com/NVIDIADemo/ngc-node/commit/eb5c6b5d1e28d6da9a75b30897ee8b68ba311d66))
+
 ## 2.0.0 (2024-10-11)
 
 Full Changelog: [v0.0.1-alpha.0...v2.0.0](https://github.com/NVIDIADemo/ngc-node/compare/v0.0.1-alpha.0...v2.0.0)
