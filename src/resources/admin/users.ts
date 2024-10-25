@@ -63,5 +63,5 @@ export namespace UserCRMSyncResponse {
 }
 
 export namespace Users {
-  export type UserCRMSyncResponse = UsersAPI.UserCRMSyncResponse;
+  export import UserCRMSyncResponse = UsersAPI.UserCRMSyncResponse;
 }

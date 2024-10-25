@@ -282,9 +282,9 @@ export interface UserGetEntitlementsParams {
 }
 
 export namespace Users {
-  export type UserRemoveResponse = UsersAPI.UserRemoveResponse;
-  export type UserCreateParams = UsersAPI.UserCreateParams;
-  export type UserAddParams = UsersAPI.UserAddParams;
-  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export type UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
+  export import UserRemoveResponse = UsersAPI.UserRemoveResponse;
+  export import UserCreateParams = UsersAPI.UserCreateParams;
+  export import UserAddParams = UsersAPI.UserAddParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export import UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
 }

@@ -146,6 +146,6 @@ export interface RoleRetrieveAllParams {
 }
 
 export namespace Roles {
-  export type UserRoleDefinitions = RolesAPI.UserRoleDefinitions;
-  export type RoleRetrieveAllParams = RolesAPI.RoleRetrieveAllParams;
+  export import UserRoleDefinitions = RolesAPI.UserRoleDefinitions;
+  export import RoleRetrieveAllParams = RolesAPI.RoleRetrieveAllParams;
 }
