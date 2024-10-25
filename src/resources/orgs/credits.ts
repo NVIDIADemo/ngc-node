@@ -67,5 +67,5 @@ export namespace CreditsHistory {
 }
 
 export namespace Credits {
-  export import CreditsHistory = CreditsAPI.CreditsHistory;
+  export type CreditsHistory = CreditsAPI.CreditsHistory;
 }

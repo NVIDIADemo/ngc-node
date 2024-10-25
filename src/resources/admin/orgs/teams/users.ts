@@ -308,8 +308,8 @@ export interface UserAddRoleParams {
 }
 
 export namespace Users {
-  export import UserCreateParams = UsersAPI.UserCreateParams;
-  export import UserUpdateParams = UsersAPI.UserUpdateParams;
-  export import UserAddParams = UsersAPI.UserAddParams;
-  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export type UserCreateParams = UsersAPI.UserCreateParams;
+  export type UserUpdateParams = UsersAPI.UserUpdateParams;
+  export type UserAddParams = UsersAPI.UserAddParams;
+  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
 }

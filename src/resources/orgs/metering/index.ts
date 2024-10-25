@@ -1,4 +1,4 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { GpupeakRetrieveAllParams, Gpupeak } from './gpupeak';
-export { MeteringRetrieveAllParams, Metering } from './metering';
+export { Gpupeak, type GpupeakRetrieveAllParams } from './gpupeak';
+export { Metering, type MeteringRetrieveAllParams } from './metering';
