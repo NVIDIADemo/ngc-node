@@ -1,20 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
+  OrgOrgOwnerBackfillResponse,
+  OrgValidateResponse,
+  OrgCreateParams,
+  OrgUpdateParams,
+  OrgEnableParams,
+  OrgValidateParams,
   Orgs,
-  type OrgOrgOwnerBackfillResponse,
-  type OrgValidateResponse,
-  type OrgCreateParams,
-  type OrgUpdateParams,
-  type OrgEnableParams,
-  type OrgValidateParams,
 } from './orgs';
 export { Teams } from './teams/index';
 export {
+  UserRemoveResponse,
+  UserCreateParams,
+  UserAddParams,
+  UserAddRoleParams,
+  UserGetEntitlementsParams,
   Users,
-  type UserRemoveResponse,
-  type UserCreateParams,
-  type UserAddParams,
-  type UserAddRoleParams,
-  type UserGetEntitlementsParams,
 } from './users';

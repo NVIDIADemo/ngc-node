@@ -148,8 +148,8 @@ export interface UserRemoveRoleParams {
 }
 
 export namespace Users {
-  export type UserDeleteResponse = UsersAPI.UserDeleteResponse;
-  export type UserDeleteParams = UsersAPI.UserDeleteParams;
-  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export type UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
+  export import UserDeleteResponse = UsersAPI.UserDeleteResponse;
+  export import UserDeleteParams = UsersAPI.UserDeleteParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export import UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
 }

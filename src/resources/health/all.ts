@@ -36,5 +36,5 @@ export interface AllRetrieveAllParams {
 }
 
 export namespace All {
-  export type AllRetrieveAllParams = AllAPI.AllRetrieveAllParams;
+  export import AllRetrieveAllParams = AllAPI.AllRetrieveAllParams;
 }

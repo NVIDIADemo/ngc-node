@@ -40,5 +40,5 @@ export namespace GpupeakRetrieveAllParams {
 }
 
 export namespace Gpupeak {
-  export type GpupeakRetrieveAllParams = GpupeakAPI.GpupeakRetrieveAllParams;
+  export import GpupeakRetrieveAllParams = GpupeakAPI.GpupeakRetrieveAllParams;
 }
