@@ -9,7 +9,7 @@ export class Me extends APIResource {
 
 export namespace Me {
   export import APIKey = APIKeyAPI.APIKey;
-  export import UserKeyResponse = APIKeyAPI.UserKeyResponse;
-  export import APIKeyRetrieveParams = APIKeyAPI.APIKeyRetrieveParams;
-  export import APIKeyUpdateParams = APIKeyAPI.APIKeyUpdateParams;
+  export type UserKeyResponse = APIKeyAPI.UserKeyResponse;
+  export type APIKeyRetrieveParams = APIKeyAPI.APIKeyRetrieveParams;
+  export type APIKeyUpdateParams = APIKeyAPI.APIKeyUpdateParams;
 }

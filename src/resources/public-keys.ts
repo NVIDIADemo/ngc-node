@@ -16,5 +16,5 @@ export class PublicKeys extends APIResource {
 export type PublicKeyRetrieveAllResponse = Array<string>;
 
 export namespace PublicKeys {
-  export import PublicKeyRetrieveAllResponse = PublicKeysAPI.PublicKeyRetrieveAllResponse;
+  export type PublicKeyRetrieveAllResponse = PublicKeysAPI.PublicKeyRetrieveAllResponse;
 }

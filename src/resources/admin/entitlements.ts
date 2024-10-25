@@ -37,5 +37,5 @@ export interface EntitlementRetrieveAllParams {
 }
 
 export namespace Entitlements {
-  export import EntitlementRetrieveAllParams = EntitlementsAPI.EntitlementRetrieveAllParams;
+  export type EntitlementRetrieveAllParams = EntitlementsAPI.EntitlementRetrieveAllParams;
 }

@@ -1084,16 +1084,16 @@ export interface UserUpdateRoleParams {
 }
 
 export namespace Users {
-  export import UserListResponse = UsersAPI.UserListResponse;
-  export import UserDeleteResponse = UsersAPI.UserDeleteResponse;
-  export import UserCreateParams = UsersAPI.UserCreateParams;
-  export import UserListParams = UsersAPI.UserListParams;
-  export import UserDeleteParams = UsersAPI.UserDeleteParams;
-  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export import UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
-  export import UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
+  export type UserListResponse = UsersAPI.UserListResponse;
+  export type UserDeleteResponse = UsersAPI.UserDeleteResponse;
+  export type UserCreateParams = UsersAPI.UserCreateParams;
+  export type UserListParams = UsersAPI.UserListParams;
+  export type UserDeleteParams = UsersAPI.UserDeleteParams;
+  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export type UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
+  export type UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
   export import NcaInvitations = NcaInvitationsAPI.NcaInvitations;
-  export import NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
+  export type NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
 }
 
 export { UserListResponsesPageNumberUsers };
