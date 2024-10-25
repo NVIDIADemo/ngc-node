@@ -208,5 +208,5 @@ export namespace ProtoOrgCreateParams {
 }
 
 export namespace ProtoOrg {
-  export import ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;
+  export type ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;
 }

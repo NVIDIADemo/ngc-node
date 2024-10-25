@@ -18,5 +18,5 @@ export class Health extends APIResource {
 
 export namespace Health {
   export import All = AllAPI.All;
-  export import AllRetrieveAllParams = AllAPI.AllRetrieveAllParams;
+  export type AllRetrieveAllParams = AllAPI.AllRetrieveAllParams;
 }

@@ -13,14 +13,14 @@ export class Admin extends APIResource {
 
 export namespace Admin {
   export import Entitlements = EntitlementsAPI.Entitlements;
-  export import EntitlementRetrieveAllParams = EntitlementsAPI.EntitlementRetrieveAllParams;
+  export type EntitlementRetrieveAllParams = EntitlementsAPI.EntitlementRetrieveAllParams;
   export import Orgs = OrgsAPI.Orgs;
-  export import OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
-  export import OrgValidateResponse = OrgsAPI.OrgValidateResponse;
-  export import OrgCreateParams = OrgsAPI.OrgCreateParams;
-  export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
-  export import OrgEnableParams = OrgsAPI.OrgEnableParams;
-  export import OrgValidateParams = OrgsAPI.OrgValidateParams;
+  export type OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
+  export type OrgValidateResponse = OrgsAPI.OrgValidateResponse;
+  export type OrgCreateParams = OrgsAPI.OrgCreateParams;
+  export type OrgUpdateParams = OrgsAPI.OrgUpdateParams;
+  export type OrgEnableParams = OrgsAPI.OrgEnableParams;
+  export type OrgValidateParams = OrgsAPI.OrgValidateParams;
   export import Users = UsersAPI.Users;
-  export import UserCRMSyncResponse = UsersAPI.UserCRMSyncResponse;
+  export type UserCRMSyncResponse = UsersAPI.UserCRMSyncResponse;
 }

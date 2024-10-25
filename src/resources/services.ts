@@ -109,6 +109,6 @@ export interface ServiceVersionParams {
 }
 
 export namespace Services {
-  export import ServiceVersionResponse = ServicesAPI.ServiceVersionResponse;
-  export import ServiceVersionParams = ServicesAPI.ServiceVersionParams;
+  export type ServiceVersionResponse = ServicesAPI.ServiceVersionResponse;
+  export type ServiceVersionParams = ServicesAPI.ServiceVersionParams;
 }

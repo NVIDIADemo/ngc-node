@@ -85,7 +85,7 @@ export namespace MeteringRetrieveAllParams {
 }
 
 export namespace Metering {
-  export import MeteringRetrieveAllParams = MeteringAPI.MeteringRetrieveAllParams;
+  export type MeteringRetrieveAllParams = MeteringAPI.MeteringRetrieveAllParams;
   export import Gpupeak = GpupeakAPI.Gpupeak;
-  export import GpupeakRetrieveAllParams = GpupeakAPI.GpupeakRetrieveAllParams;
+  export type GpupeakRetrieveAllParams = GpupeakAPI.GpupeakRetrieveAllParams;
 }

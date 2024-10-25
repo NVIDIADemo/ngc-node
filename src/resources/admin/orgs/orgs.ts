@@ -706,17 +706,17 @@ export interface OrgValidateParams {
 }
 
 export namespace Orgs {
-  export import OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
-  export import OrgValidateResponse = OrgsAPI.OrgValidateResponse;
-  export import OrgCreateParams = OrgsAPI.OrgCreateParams;
-  export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
-  export import OrgEnableParams = OrgsAPI.OrgEnableParams;
-  export import OrgValidateParams = OrgsAPI.OrgValidateParams;
+  export type OrgOrgOwnerBackfillResponse = OrgsAPI.OrgOrgOwnerBackfillResponse;
+  export type OrgValidateResponse = OrgsAPI.OrgValidateResponse;
+  export type OrgCreateParams = OrgsAPI.OrgCreateParams;
+  export type OrgUpdateParams = OrgsAPI.OrgUpdateParams;
+  export type OrgEnableParams = OrgsAPI.OrgEnableParams;
+  export type OrgValidateParams = OrgsAPI.OrgValidateParams;
   export import Users = UsersAPI.Users;
-  export import UserRemoveResponse = UsersAPI.UserRemoveResponse;
-  export import UserCreateParams = UsersAPI.UserCreateParams;
-  export import UserAddParams = UsersAPI.UserAddParams;
-  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export import UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
+  export type UserRemoveResponse = UsersAPI.UserRemoveResponse;
+  export type UserCreateParams = UsersAPI.UserCreateParams;
+  export type UserAddParams = UsersAPI.UserAddParams;
+  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export type UserGetEntitlementsParams = UsersAPI.UserGetEntitlementsParams;
   export import Teams = TeamsAPI.Teams;
 }
