@@ -89,16 +89,16 @@ export namespace TeamResponse {
 export interface TeamListParams extends PageNumberTeamsParams {}
 
 export namespace Teams {
-  export type TeamResponse = TeamsAPI.TeamResponse;
-  export type TeamListParams = TeamsAPI.TeamListParams;
+  export import TeamResponse = TeamsAPI.TeamResponse;
+  export import TeamListParams = TeamsAPI.TeamListParams;
   export import Users = UsersAPI.Users;
-  export type UserDeleteResponse = UsersAPI.UserDeleteResponse;
-  export type UserDeleteParams = UsersAPI.UserDeleteParams;
-  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export type UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
+  export import UserDeleteResponse = UsersAPI.UserDeleteResponse;
+  export import UserDeleteParams = UsersAPI.UserDeleteParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export import UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
   export import StarfleetIDs = StarfleetIDsAPI.StarfleetIDs;
   export import NcaInvitations = NcaInvitationsAPI.NcaInvitations;
-  export type NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
+  export import NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
 }
 
 export { TeamsPageNumberTeams };

@@ -67,5 +67,5 @@ export namespace AuditLogsPresignedURL {
 }
 
 export namespace AuditLogs {
-  export type AuditLogsPresignedURL = AuditLogsAPI.AuditLogsPresignedURL;
+  export import AuditLogsPresignedURL = AuditLogsAPI.AuditLogsPresignedURL;
 }

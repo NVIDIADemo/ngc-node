@@ -45,5 +45,5 @@ export interface NcaInvitationCreateParams {
 }
 
 export namespace NcaInvitations {
-  export type NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
+  export import NcaInvitationCreateParams = NcaInvitationsAPI.NcaInvitationCreateParams;
 }

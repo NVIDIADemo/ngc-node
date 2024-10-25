@@ -190,59 +190,59 @@ export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
 export namespace Ngc {
-  export type RequestOptions = Core.RequestOptions;
+  export import RequestOptions = Core.RequestOptions;
 
   export import PageNumberOrganizations = Pagination.PageNumberOrganizations;
-  export type PageNumberOrganizationsParams = Pagination.PageNumberOrganizationsParams;
-  export type PageNumberOrganizationsResponse<T> = Pagination.PageNumberOrganizationsResponse<T>;
+  export import PageNumberOrganizationsParams = Pagination.PageNumberOrganizationsParams;
+  export import PageNumberOrganizationsResponse = Pagination.PageNumberOrganizationsResponse;
 
   export import PageNumberUsers = Pagination.PageNumberUsers;
-  export type PageNumberUsersParams = Pagination.PageNumberUsersParams;
-  export type PageNumberUsersResponse<T> = Pagination.PageNumberUsersResponse<T>;
+  export import PageNumberUsersParams = Pagination.PageNumberUsersParams;
+  export import PageNumberUsersResponse = Pagination.PageNumberUsersResponse;
 
   export import PageNumberTeams = Pagination.PageNumberTeams;
-  export type PageNumberTeamsParams = Pagination.PageNumberTeamsParams;
-  export type PageNumberTeamsResponse<T> = Pagination.PageNumberTeamsResponse<T>;
+  export import PageNumberTeamsParams = Pagination.PageNumberTeamsParams;
+  export import PageNumberTeamsResponse = Pagination.PageNumberTeamsResponse;
 
   export import PageNumberInvitations = Pagination.PageNumberInvitations;
-  export type PageNumberInvitationsParams = Pagination.PageNumberInvitationsParams;
-  export type PageNumberInvitationsResponse<T> = Pagination.PageNumberInvitationsResponse<T>;
+  export import PageNumberInvitationsParams = Pagination.PageNumberInvitationsParams;
+  export import PageNumberInvitationsResponse = Pagination.PageNumberInvitationsResponse;
 
   export import Orgs = API.Orgs;
-  export type OrgList = API.OrgList;
-  export type OrgResponse = API.OrgResponse;
-  export type OrgListResponse = API.OrgListResponse;
+  export import OrgList = API.OrgList;
+  export import OrgResponse = API.OrgResponse;
+  export import OrgListResponse = API.OrgListResponse;
   export import OrgListResponsesPageNumberOrganizations = API.OrgListResponsesPageNumberOrganizations;
-  export type OrgCreateParams = API.OrgCreateParams;
-  export type OrgUpdateParams = API.OrgUpdateParams;
-  export type OrgListParams = API.OrgListParams;
+  export import OrgCreateParams = API.OrgCreateParams;
+  export import OrgUpdateParams = API.OrgUpdateParams;
+  export import OrgListParams = API.OrgListParams;
 
   export import Me = API.Me;
 
   export import Admin = API.Admin;
 
   export import Services = API.Services;
-  export type ServiceVersionResponse = API.ServiceVersionResponse;
-  export type ServiceVersionParams = API.ServiceVersionParams;
+  export import ServiceVersionResponse = API.ServiceVersionResponse;
+  export import ServiceVersionParams = API.ServiceVersionParams;
 
   export import Roles = API.Roles;
-  export type UserRoleDefinitions = API.UserRoleDefinitions;
-  export type RoleRetrieveAllParams = API.RoleRetrieveAllParams;
+  export import UserRoleDefinitions = API.UserRoleDefinitions;
+  export import RoleRetrieveAllParams = API.RoleRetrieveAllParams;
 
   export import PublicKeys = API.PublicKeys;
-  export type PublicKeyRetrieveAllResponse = API.PublicKeyRetrieveAllResponse;
+  export import PublicKeyRetrieveAllResponse = API.PublicKeyRetrieveAllResponse;
 
   export import Health = API.Health;
 
   export import SwaggerResources = API.SwaggerResources;
 
-  export type Health = API.Health;
-  export type MeteringResultList = API.MeteringResultList;
-  export type Team = API.Team;
-  export type TeamList = API.TeamList;
-  export type User = API.User;
-  export type UserInvitationList = API.UserInvitationList;
-  export type UserList = API.UserList;
+  export import Health = API.Health;
+  export import MeteringResultList = API.MeteringResultList;
+  export import Team = API.Team;
+  export import TeamList = API.TeamList;
+  export import User = API.User;
+  export import UserInvitationList = API.UserInvitationList;
+  export import UserList = API.UserList;
 }
 
 export default Ngc;

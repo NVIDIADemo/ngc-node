@@ -1436,32 +1436,32 @@ export interface OrgListParams extends PageNumberOrganizationsParams {
 }
 
 export namespace Orgs {
-  export type OrgList = OrgsAPI.OrgList;
-  export type OrgResponse = OrgsAPI.OrgResponse;
-  export type OrgListResponse = OrgsAPI.OrgListResponse;
+  export import OrgList = OrgsAPI.OrgList;
+  export import OrgResponse = OrgsAPI.OrgResponse;
+  export import OrgListResponse = OrgsAPI.OrgListResponse;
   export import OrgListResponsesPageNumberOrganizations = OrgsAPI.OrgListResponsesPageNumberOrganizations;
-  export type OrgCreateParams = OrgsAPI.OrgCreateParams;
-  export type OrgUpdateParams = OrgsAPI.OrgUpdateParams;
-  export type OrgListParams = OrgsAPI.OrgListParams;
+  export import OrgCreateParams = OrgsAPI.OrgCreateParams;
+  export import OrgUpdateParams = OrgsAPI.OrgUpdateParams;
+  export import OrgListParams = OrgsAPI.OrgListParams;
   export import Users = UsersAPI.Users;
-  export type UserListResponse = UsersAPI.UserListResponse;
-  export type UserDeleteResponse = UsersAPI.UserDeleteResponse;
-  export type UserCreateParams = UsersAPI.UserCreateParams;
-  export type UserListParams = UsersAPI.UserListParams;
-  export type UserDeleteParams = UsersAPI.UserDeleteParams;
-  export type UserAddRoleParams = UsersAPI.UserAddRoleParams;
-  export type UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
-  export type UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
+  export import UserListResponse = UsersAPI.UserListResponse;
+  export import UserDeleteResponse = UsersAPI.UserDeleteResponse;
+  export import UserCreateParams = UsersAPI.UserCreateParams;
+  export import UserListParams = UsersAPI.UserListParams;
+  export import UserDeleteParams = UsersAPI.UserDeleteParams;
+  export import UserAddRoleParams = UsersAPI.UserAddRoleParams;
+  export import UserRemoveRoleParams = UsersAPI.UserRemoveRoleParams;
+  export import UserUpdateRoleParams = UsersAPI.UserUpdateRoleParams;
   export import Teams = TeamsAPI.Teams;
-  export type TeamResponse = TeamsAPI.TeamResponse;
-  export type TeamListParams = TeamsAPI.TeamListParams;
+  export import TeamResponse = TeamsAPI.TeamResponse;
+  export import TeamListParams = TeamsAPI.TeamListParams;
   export import ProtoOrg = ProtoOrgAPI.ProtoOrg;
-  export type ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;
+  export import ProtoOrgCreateParams = ProtoOrgAPI.ProtoOrgCreateParams;
   export import Credits = CreditsAPI.Credits;
-  export type CreditsHistory = CreditsAPI.CreditsHistory;
+  export import CreditsHistory = CreditsAPI.CreditsHistory;
   export import StarfleetIDs = StarfleetIDsAPI.StarfleetIDs;
   export import Metering = MeteringAPI.Metering;
-  export type MeteringRetrieveAllParams = MeteringAPI.MeteringRetrieveAllParams;
+  export import MeteringRetrieveAllParams = MeteringAPI.MeteringRetrieveAllParams;
   export import AuditLogs = AuditLogsAPI.AuditLogs;
-  export type AuditLogsPresignedURL = AuditLogsAPI.AuditLogsPresignedURL;
+  export import AuditLogsPresignedURL = AuditLogsAPI.AuditLogsPresignedURL;
 }
