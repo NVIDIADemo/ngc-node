@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.1.0 (2024-10-30)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/NVIDIADemo/ngc-node/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** api update ([#12](https://github.com/NVIDIADemo/ngc-node/issues/12)) ([eb5c6b5](https://github.com/NVIDIADemo/ngc-node/commit/eb5c6b5d1e28d6da9a75b30897ee8b68ba311d66))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#14](https://github.com/NVIDIADemo/ngc-node/issues/14)) ([4b9d0af](https://github.com/NVIDIADemo/ngc-node/commit/4b9d0af21172ef0ad56eca544043fa7b5f1b3ca1))
+* rebuild project due to codegen change ([#15](https://github.com/NVIDIADemo/ngc-node/issues/15)) ([1a31087](https://github.com/NVIDIADemo/ngc-node/commit/1a31087299992b2f16177c627aca7e0565714218))
+* rebuild project due to codegen change ([#16](https://github.com/NVIDIADemo/ngc-node/issues/16)) ([46a51c4](https://github.com/NVIDIADemo/ngc-node/commit/46a51c43e567f7e5709375a141492b3e0f23696c))
+
 ## 2.0.0 (2024-10-11)
 
 Full Changelog: [v0.0.1-alpha.0...v2.0.0](https://github.com/NVIDIADemo/ngc-node/compare/v0.0.1-alpha.0...v2.0.0)
